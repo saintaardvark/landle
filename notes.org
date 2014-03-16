@@ -1,0 +1,6 @@
+
+* Get /users/:user/starred
+  http://developer.github.com/v3/activity/starred
+
+* Two approaches: Github API module, or YAML
+  - YAML more flexible
