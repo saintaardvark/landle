@@ -27,7 +27,7 @@ use Getopt::Std;
 # use Net::GitHub::V3;
 use LWP::Simple;
 use JSON::XS;
-use File::Path qw(mkpath);
+use File::Path qw(make_path);
 my %option;
 my $p_option;
 my $verbose = 0;
