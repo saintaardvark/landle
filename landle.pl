@@ -122,6 +122,8 @@ if (defined $option{p}) {
 
 my $data;
 
+# Arghh:  repos and starred are different.
+
 if (defined $option{r}) {
 	local $/;
 	open(my $fh, '<', 'test.json');
