@@ -136,26 +136,93 @@ if (defined $option{r}) {
 
 setup_root;
 
-
-foreach my $i (@urls) {
-  print "Target: $i\n";
-  print "URL: https://api.github.com/users/saintaardvark/$i\n";
-  my $reply = get("https://api.github.com/users/saintaardvark/$i");
-  print "FIXME: \$reply = |$reply|\n";
-  my $data = decode_json $reply;
-  foreach my $project (@$data) {
-    printf("%s\n\tFork: %s\n\tURL:%s\n",
-	   $project->{"name"},
-	   $project->{"fork"},
-	   $project->{"clone_url"});
-    if ($project->{"fork"} == 1) {
-      printf("cd repos/forks && git clone %s\n",
-	     $project->{"clone_url"});
-    } elsif ($project->{"starred"} == 1) {
-      printf("cd repos/forks && git clone %s\n",
-	     $project->{"clone_url"});
-    } else {
-      print "Not sure what to do here...\n"
-    }
-  }
+# FIXME: Testing option
+foreach my $project (@$data) {
+	printf("%s\n\tFork: %s\n\tURL:%s\n",
+	       $project->{"name"},
+	       $project->{"fork"},
+	       $project->{"clone_url"});
+	if ($project->{"fork"} == 1) {
+		printf("cd repos/forks && git clone %s\n",
+		       $project->{"clone_url"});
+	} elsif ($project->{"starred"} == 1) {
+		printf("cd repos/forks && git clone %s\n",
+		       $project->{"clone_url"});
+	} else {
+		print "Not sure what to do here...\n";
+	}
 }
+
+# clone_or_update_starred($perl_scalar);
+# Output:
+# ./landle.pl
+# FIXME: $perl_scalar = |ARRAY(0x255b968)|
+# FIXME: @$perl_scalar[0] = |HASH(0x2742590)|
+# FIXME: keys %HASH(0x2742590) = |permissions
+# labels_url
+# pulls_url
+# open_issues_count
+# forks_url
+# url
+# issue_events_url
+# has_downloads
+# tags_url
+# assignees_url
+# forks_count
+# has_issues
+# clone_url
+# name
+# private
+# watchers_count
+# pushed_at
+# description
+# archive_url
+# languages_url
+# updated_at
+# html_url
+# notifications_url
+# commits_url
+# releases_url
+# comments_url
+# stargazers_count
+# size
+# watchers
+# created_at
+# subscription_url
+# mirror_url
+# issues_url
+# subscribers_url
+# collaborators_url
+# open_issues
+# git_refs_url
+# language
+# git_url
+# stargazers_url
+# full_name
+# keys_url
+# branches_url
+# downloads_url
+# master_branch
+# git_commits_url
+# blobs_url
+# contents_url
+# compare_url
+# id
+# has_wiki
+# git_tags_url
+# homepage
+# forks
+# events_url
+# ssh_url
+# statuses_url
+# merges_url
+# svn_url
+# teams_url
+# contributors_url
+# owner
+# trees_url
+# hooks_url
+# issue_comment_url
+# default_branch
+# fork
+# milestones_url|
