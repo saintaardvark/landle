@@ -92,10 +92,14 @@ foreach my $i (@targets) {
   mkpath("repos/$i");
 }
 print "done.\n";
+
+my @urls = ("repos", "starred");
+
+foreach my $i (@urls) {
   print "Target: $i\n";
   print "URL: https://api.github.com/users/saintaardvark/$i\n";
   my $reply = get("https://api.github.com/users/saintaardvark/$i");
-  # print "FIXME: \$reply = |$reply|\n";
+  print "FIXME: \$reply = |$reply|\n";
   my $data = decode_json $reply;
   foreach my $project (@$data) {
     printf("%s\n\tFork: %s\n\tURL:%s\n",
