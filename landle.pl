@@ -27,6 +27,7 @@ use Getopt::Std;
 # use Net::GitHub::V3;
 use LWP::Simple;
 use JSON::XS;
+use File::Path qw(mkpath);
 my %option;
 my $p_option;
 my $verbose = 0;
@@ -79,18 +80,16 @@ if (defined $option{p}) {
 	$p_option = $option{p};
 }
 
-# my @targets = qw(forks
-# 		 mirrors
-# 		 private
-# 		 public
-# 		 starred
-# 		 watched);
-
-my @targets = ("repos", "starred");
+my @targets = qw(forks
+		 mirrors
+		 private
+		 public
+		 starred
+		 watched);
 
 foreach my $i (@targets) {
-  # get("https://api.github.com/users/saintaardvark/starred");
-  # my $data = decode_json $stars;
+  mkpath("repos/$i");
+}
   print "Target: $i\n";
   print "URL: https://api.github.com/users/saintaardvark/$i\n";
   my $reply = get("https://api.github.com/users/saintaardvark/$i");
