@@ -33,6 +33,8 @@ my $p_option;
 my $verbose = 0;
 my $testing_only = 0;
 
+# FIXME: For testing
+my $root = ".";
 sub usage {
 	print <<USAGE;
 
