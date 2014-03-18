@@ -87,9 +87,11 @@ my @targets = qw(forks
 		 starred
 		 watched);
 
+print "Setting up directories...";
 foreach my $i (@targets) {
   mkpath("repos/$i");
 }
+print "done.\n";
   print "Target: $i\n";
   print "URL: https://api.github.com/users/saintaardvark/$i\n";
   my $reply = get("https://api.github.com/users/saintaardvark/$i");
