@@ -120,6 +120,8 @@ if (defined $option{p}) {
 	$p_option = $option{p};
 }
 
+my $data;
+
 if (defined $option{r}) {
 	local $/;
 	open(my $fh, '<', 'test.json');
