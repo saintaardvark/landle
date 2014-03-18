@@ -95,7 +95,19 @@ foreach my $i (@targets) {
   my $reply = get("https://api.github.com/users/saintaardvark/$i");
   # print "FIXME: \$reply = |$reply|\n";
   my $data = decode_json $reply;
-    foreach my $project (@$data) {
-    printf("%s\n\tFork: %s\n\tURL:%s\n", $project->{"name"}, $project->{"fork"}, $project->{"clone_url"});
+  foreach my $project (@$data) {
+    printf("%s\n\tFork: %s\n\tURL:%s\n",
+	   $project->{"name"},
+	   $project->{"fork"},
+	   $project->{"clone_url"});
+    if ($project->{"fork"} == 1) {
+      printf("cd repos/forks && git clone %s\n",
+	     $project->{"clone_url"});
+    } elsif ($project->{"starred"} == 1) {
+      printf("cd repos/forks && git clone %s\n",
+	     $project->{"clone_url"});
+    } else {
+      print "Not sure what to do here...\n"
+    }
   }
 }
