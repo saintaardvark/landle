@@ -62,6 +62,15 @@ sub debug {
 	}
 }
 
+sub setup_root {
+	# FIXME: eval / check for errors
+	foreach my $i (@subdirs) {
+		next if -d "${root}/$i";
+		make_path("${root}/$i", { verbose => 1,
+					  mode    => 0755 });
+	}
+}
+
 getopts('vnhp:', \%option);
 
 if ($option{h}) {
