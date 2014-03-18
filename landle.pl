@@ -119,10 +119,6 @@ if (defined $option{p}) {
 	$p_option = $option{p};
 }
 
-debug("FIXME: \$perl_scalar = |$perl_scalar|\n");
-debug("FIXME: \@\$perl_scalar[0] = |" . @$perl_scalar[0] . "|\n");
-debug("FIXME: keys \%@$perl_scalar[0] = |");
-debug(join("\n", keys @$perl_scalar[0]));
 
 setup_root;
 my @targets = qw(forks
