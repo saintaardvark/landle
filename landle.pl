@@ -119,6 +119,19 @@ if (defined $option{p}) {
 	$p_option = $option{p};
 }
 
+if (defined $option{r}) {
+	local $/;
+	open(my $fh, '<', 'test.json');
+	my $json_text = <$fh>;
+	$data = decode_json($json_text);
+} else {
+	# FIXME: Is the repos URL what I want?  Put it in config, or var up above.
+	debug("URL: https://api.github.com/users/saintaardvark/repos\n");
+	# FIXME: no network option
+	my $reply = get("https://api.github.com/users/saintaardvark/repos");
+	debug("\$reply = |$reply|");
+	$data = decode_json($reply);
+}
 
 setup_root;
 my @targets = qw(forks
