@@ -34,8 +34,14 @@ my $verbose = 0;
 my $testing_only = 0;
 
 # FIXME: For testing
-my $root = ".";
+my $root = "./repos";
 my @subdirs = ("forks", "mirrors", "private", "public", "starred", "watching");
+my @targets = qw(forks
+		 mirrors
+		 private
+		 public
+		 starred
+		 watched);
 
 sub usage {
 	print <<USAGE;
