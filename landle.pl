@@ -35,6 +35,8 @@ my $testing_only = 0;
 
 # FIXME: For testing
 my $root = ".";
+my @subdirs = ("forks", "mirrors", "private", "public", "starred", "watching");
+
 sub usage {
 	print <<USAGE;
 
