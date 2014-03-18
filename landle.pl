@@ -51,7 +51,7 @@ debugging web servers.
 
 Usage:
 
--p [arg] Provide an argument.
+-r	Work on already-downloaded test data only.
 -v	Be verbose.
 -n	Testing only: show, do not do. Implies -v.
 -h	This helpful message.
