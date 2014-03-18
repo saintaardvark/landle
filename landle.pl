@@ -82,6 +82,7 @@ sub setup_root {
 	}
 	debug("Done.");
 }
+
 sub clone_or_update_starred {
 	my $projects_ref = shift;
 	my $target_dir = shift;
@@ -134,20 +135,7 @@ if (defined $option{r}) {
 }
 
 setup_root;
-my @targets = qw(forks
-		 mirrors
-		 private
-		 public
-		 starred
-		 watched);
 
-print "Setting up directories...";
-foreach my $i (@targets) {
-  mkpath("repos/$i");
-}
-print "done.\n";
-
-my @urls = ("repos", "starred");
 
 foreach my $i (@urls) {
   print "Target: $i\n";
