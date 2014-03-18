@@ -74,11 +74,14 @@ sub debug {
 
 sub setup_root {
 	# FIXME: eval / check for errors
+	debug("Setting up directories...");
 	foreach my $i (@subdirs) {
 		next if -d "${root}/$i";
 		make_path("${root}/$i", { verbose => 1,
 					  mode    => 0755 });
 	}
+	debug("Done.");
+}
 }
 
 getopts('vnhp:', \%option);
