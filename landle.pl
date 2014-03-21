@@ -1,6 +1,7 @@
 #!/usr/bin/perl -w
 
-# perl_template.pl:  A Small but Useful(tm) utility to foo the right bar.
+# landle: A Small but Useful(tm) utility to maintain clones of github
+# repos.
 #
 # Copyright (C) 2014 Hugh Brown
 #
@@ -46,8 +47,7 @@ my @targets = qw(forks
 sub usage {
 	print <<USAGE;
 
-$0: A Small but Useful(tm) utility to foo the right bar. Useful for
-debugging web servers.
+$0: A Small but Useful(tm) utility to maintain clones of your github repos.
 
 Usage:
 
