@@ -85,8 +85,8 @@ sub setup_root {
 	debug("Done.");
 }
 
-sub clone_or_update_starred {
 	my $projects_ref = shift;
+sub clone_or_update {
 	my $target_dir = shift;
 	chdir("${root}/${target_dir}");
 	foreach my $i (@$projects_ref) {
