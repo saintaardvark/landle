@@ -143,10 +143,10 @@ if ($offline == 1) {
 # users.repos will give us forks, private and public.
 # FIXME: Testing option
 foreach my $project (@$data) {
-	printf("%s\n\tFork: %s\n\tURL:%s\n",
-	       $project->{"name"},
-	       $project->{"fork"},
-	       $project->{"clone_url"});
+	debug(printf("%s\n\tFork: %s\n\tURL:%s\n",
+		     $project->{"name"},
+		     $project->{"fork"},
+		     $project->{"clone_url"}));
 	if ($project->{"fork"} == 1) {
 		printf("cd repos/forks && git clone %s\n",
 		       $project->{"clone_url"});
