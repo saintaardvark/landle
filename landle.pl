@@ -32,6 +32,7 @@ use File::Path qw(make_path);
 my %option;
 my $p_option;
 my $verbose = 0;
+my $offline = 1;
 my $testing_only = 0;
 
 # FIXME: For testing
@@ -51,7 +52,7 @@ $0: A Small but Useful(tm) utility to maintain clones of your github repos.
 
 Usage:
 
--r	Work on already-downloaded test data only.
+-d	Work on already-downloaded test data only.
 -v	Be verbose.
 -n	Testing only: show, do not do. Implies -v.
 -h	This helpful message.
@@ -116,17 +117,17 @@ if ($option{n}) {
 	$testing_only = 1;
 	$verbose = 1;
 }
-if (defined $option{p}) {
-	$p_option = $option{p};
+if (defined $option{d}) {
+	$offline = 1;
 }
 
-my $data;
+setup_root;
 
 # Arghh:  repos and starred are different.
 
-if (defined $option{r}) {
+if ($offline == 1) {
 	local $/;
-	open(my $fh, '<', 'test.json');
+	open(my $fh, '<', 'user.repos.json');
 	my $json_text = <$fh>;
 	$data = decode_json($json_text);
 } else {
