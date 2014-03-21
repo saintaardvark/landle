@@ -139,8 +139,7 @@ if ($offline == 1) {
 	$data = decode_json($reply);
 }
 
-setup_root;
-
+# users.repos will give us forks, private and public.
 # FIXME: Testing option
 foreach my $project (@$data) {
 	printf("%s\n\tFork: %s\n\tURL:%s\n",
