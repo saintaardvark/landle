@@ -85,24 +85,21 @@ sub setup_root {
 	debug("Done.");
 }
 
-	my $projects_ref = shift;
 sub clone_or_update {
+	my $project = shift;
 	my $target_dir = shift;
 	chdir("${root}/${target_dir}");
-	foreach my $i (@$projects_ref) {
-	# FIXME: is use of $name correct?
-	# FIXME: what about conflicting project names?
-		my $repo_dir = sprintf("%s/%s", $root, $i->{"name"});
-		if (-d $repo_dir) {
-			debug("Assuming already cloned and need to update.");
-			chdir("$repo_dir");
-			printf("%s: git pull origin master", $i->{"name"});
-		} else {
-			debug("Assuming need to clone.");
-			printf("%s: git clone %s\n",$i->{"name"}, $i->{"clone_url"});
-		}
+	my $repo_dir = sprintf("%s/%s", $root, $project->{"name"});
+	if (-d $repo_dir) {
+		debug("Assuming already cloned and need to update.");
+		chdir("$repo_dir");
+		printf("%s: git pull origin master", $project->{"name"});
+	} else {
+		debug("Assuming need to clone.");
+		printf("%s: git clone %s\n",$project->{"name"}, $project->{"clone_url"});
 	}
 }
+
 
 getopts('vnhp:', \%option);
 
@@ -148,16 +145,14 @@ foreach my $project (@$data) {
 		     $project->{"fork"},
 		     $project->{"clone_url"}));
 	if ($project->{"fork"} == 1) {
-		printf("cd repos/forks && git clone %s\n",
-		       $project->{"clone_url"});
+		clone_or_update($project, "fork");
 	} elsif ($project->{"private"} == 1) {
-		printf("cd repos/private && git clone %s\n",
-		       $project->{"clone_url"});
+		clone_or_update($project, "private");
 	} else {
-		printf("cd repos/public && git clone %s\n",
-		       $project->{"clone_url"});
+		clone_or_update($project, "public");
 	}
 }
+
 
 # clone_or_update_starred($perl_scalar);
 # Output:
