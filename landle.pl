@@ -34,6 +34,7 @@ my $p_option;
 my $verbose = 0;
 my $offline = 1;
 my $testing_only = 0;
+my $data;
 
 # FIXME: For testing
 my $root = "./repos";
