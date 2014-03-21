@@ -150,11 +150,12 @@ foreach my $project (@$data) {
 	if ($project->{"fork"} == 1) {
 		printf("cd repos/forks && git clone %s\n",
 		       $project->{"clone_url"});
-	} elsif ($project->{"starred"} == 1) {
-		printf("cd repos/forks && git clone %s\n",
+	} elsif ($project->{"private"} == 1) {
+		printf("cd repos/private && git clone %s\n",
 		       $project->{"clone_url"});
 	} else {
-		print "Not sure what to do here...\n";
+		printf("cd repos/public && git clone %s\n",
+		       $project->{"clone_url"});
 	}
 }
 
