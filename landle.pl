@@ -29,6 +29,7 @@ use Getopt::Std;
 use LWP::Simple;
 use JSON::XS;
 use File::Path qw(make_path);
+use File::Basename qw(dirname);
 use Cwd qw(abs_path);
 my %option;
 my $p_option;
@@ -126,10 +127,11 @@ if (defined $option{d}) {
 setup_root;
 
 # Arghh:  repos and starred are different.
-
+my $orig;
 if ($offline == 1) {
 	local $/;
 	open(my $fh, '<', 'user.repos.json');
+	$orig = dirname(abs_path('user.repos.json'));
 	my $json_text = <$fh>;
 	$data = decode_json($json_text);
 } else {
