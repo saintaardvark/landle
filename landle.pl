@@ -29,6 +29,7 @@ use Getopt::Std;
 use LWP::Simple;
 use JSON::XS;
 use File::Path qw(make_path);
+use Cwd qw(abs_path);
 my %option;
 my $p_option;
 my $verbose = 0;
@@ -37,7 +38,7 @@ my $testing_only = 0;
 my $data;
 
 # FIXME: For testing
-my $root = "./repos";
+my $root = abs_path("./repos");
 my @subdirs = ("forks", "mirrors", "private", "public", "starred", "watching");
 my @targets = qw(forks
 		 mirrors
