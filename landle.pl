@@ -90,7 +90,7 @@ sub clone_or_update {
 	my $project = shift;
 	my $target_dir = shift;
 	chdir("${root}/${target_dir}");
-	my $repo_dir = sprintf("%s/%s", $root, $project->{"name"});
+	my $repo_dir = $project->{"name"};
 	if (-d $repo_dir) {
 		debug("Assuming already cloned and need to update.");
 		return if $testing_only;
