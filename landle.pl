@@ -34,7 +34,7 @@ use Cwd qw(abs_path);
 my %option;
 my $p_option;
 my $verbose = 0;
-my $offline = 1;
+my $offline = 0;
 my $testing_only = 0;
 my $data;
 my $project;
@@ -58,7 +58,7 @@ Usage:
 
 -d	Work on already-downloaded test data only.
 -v	Be verbose.
--n	Testing only: show, do not do. Implies -v.
+-n	Testing only: show, do not do.
 -h	This helpful message.
 USAGE
 	exit 1;
@@ -119,7 +119,6 @@ if ($option{v}) {
 
 if ($option{n}) {
 	$testing_only = 1;
-	$verbose = 1;
 }
 if (defined $option{d}) {
 	$offline = 1;
