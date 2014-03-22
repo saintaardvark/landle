@@ -92,14 +92,17 @@ sub clone_or_update {
 	my $repo_dir = sprintf("%s/%s", $root, $project->{"name"});
 	if (-d $repo_dir) {
 		debug("Assuming already cloned and need to update.");
+		return if $testing_only;
 		chdir("$repo_dir");
-		printf("%s: git pull origin master", $project->{"name"});
+		system("git pull origin master");
 	} else {
 		debug("Assuming need to clone.");
-		printf("%s: git clone %s\n",$project->{"name"}, $project->{"clone_url"});
+		my $clone = sprintf("git clone %s", $project->{"clone_url"});
+		debug($clone);
+		return if $testing_only;
+		system($clone);
 	}
 }
-
 
 getopts('vnhp:', \%option);
 
