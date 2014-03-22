@@ -37,6 +37,7 @@ my $verbose = 0;
 my $offline = 1;
 my $testing_only = 0;
 my $data;
+my $project;
 
 # FIXME: For testing
 my $root = abs_path("./repos");
