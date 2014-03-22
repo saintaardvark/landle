@@ -107,7 +107,7 @@ sub clone_or_update {
 	}
 }
 
-getopts('vnhp:', \%option);
+getopts('dvnh:', \%option);
 
 if ($option{h}) {
 	&usage;
