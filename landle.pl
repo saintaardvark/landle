@@ -149,7 +149,7 @@ foreach my $project (@$data) {
 		     $project->{"fork"},
 		     $project->{"clone_url"}));
 	if ($project->{"fork"} == 1) {
-		clone_or_update($project, "fork");
+		clone_or_update($project, "forks");
 	} elsif ($project->{"private"} == 1) {
 		clone_or_update($project, "private");
 	} else {
