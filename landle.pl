@@ -159,6 +159,30 @@ foreach my $project (@$data) {
 	}
 }
 
+# And now starred
+if ($offline == 1) {
+	chdir($orig);
+	system("pwd");
+	local $/;
+	open(my $fh, '<', 'user.starred.json') or die("Can't open: $!");
+	my $json_text = <$fh>;
+	$data = decode_json($json_text);
+} else {
+	# FIXME: Is the repos URL what I want?  Put it in config, or var up above.
+	debug("URL: https://api.github.com/users/saintaardvark/starred");
+	# FIXME: no network option
+	my $reply = get("https://api.github.com/users/saintaardvark/starred");
+	debug("\$reply = |$reply|");
+	$data = decode_json($reply);
+}
+
+foreach $project (@$data) {
+	debug(printf("%s\n\tFork: %s\n\tURL:%s\n",
+		     $project->{"name"},
+		     $project->{"fork"},
+		     $project->{"clone_url"}));
+	clone_or_update($project, "starred");
+}
 
 # clone_or_update_starred($perl_scalar);
 # Output:
