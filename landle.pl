@@ -146,10 +146,6 @@ if ($offline == 1) {
 # users.repos will give us forks, private and public.
 # FIXME: Testing option
 foreach $project (@$data) {
-	debug(printf("%s\n\tFork: %s\n\tURL:%s\n",
-		     $project->{"name"},
-		     $project->{"fork"},
-		     $project->{"clone_url"}));
 	if ($project->{"fork"} == 1) {
 		clone_or_update($project, "forks");
 	} elsif ($project->{"private"} == 1) {
@@ -177,10 +173,6 @@ if ($offline == 1) {
 }
 
 foreach $project (@$data) {
-	debug(printf("%s\n\tFork: %s\n\tURL:%s\n",
-		     $project->{"name"},
-		     $project->{"fork"},
-		     $project->{"clone_url"}));
 	clone_or_update($project, "starred");
 }
 
