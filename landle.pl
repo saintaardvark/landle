@@ -139,7 +139,7 @@ if ($offline == 1) {
 	debug("URL: https://api.github.com/users/saintaardvark/repos\n");
 	# FIXME: no network option
 	my $reply = get("https://api.github.com/users/saintaardvark/repos");
-	debug("\$reply = |$reply|");
+	# debug("\$reply = |$reply|");
 	$data = decode_json($reply);
 }
 
@@ -168,7 +168,7 @@ if ($offline == 1) {
 	debug("URL: https://api.github.com/users/saintaardvark/starred");
 	# FIXME: no network option
 	my $reply = get("https://api.github.com/users/saintaardvark/starred");
-	debug("\$reply = |$reply|");
+	# debug("\$reply = |$reply|");
 	$data = decode_json($reply);
 }
 
