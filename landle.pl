@@ -130,6 +130,9 @@ setup_root;
 
 # Arghh:  repos and starred are different.
 my $orig;
+my @urls = ("https://api.github.com/users/saintaardvark/repos",
+	    "https://api.github.com/users/saintaardvark/starred" );
+
 if ($offline == 1) {
 	local $/;
 	open(my $fh, '<', 'user.repos.json');
@@ -160,7 +163,8 @@ foreach $project (@$data) {
 	}
 }
 
-# And now starred
+# And now starred.
+# FIXME: Combine these two using the @urls above.
 if ($offline == 1) {
 	chdir($orig);
 	system("pwd");
