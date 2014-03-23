@@ -95,6 +95,8 @@ sub clone_or_update {
 	my $repo_dir = $project->{"name"};
 	if (-d $repo_dir) {
 		debug("Assuming already cloned and need to update.");
+		# FIXME: Would git fetch be better?
+		debug("cd $repo_dir && git pull origin master");
 		return if $testing_only;
 		chdir("$repo_dir");
 		system("git pull origin master");
