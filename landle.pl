@@ -38,6 +38,7 @@ my $offline = 0;
 my $testing_only = 0;
 my $data;
 my $project;
+my $user;
 
 # FIXME: For testing
 my $root = abs_path("./repos");
@@ -56,6 +57,7 @@ $0: A Small but Useful(tm) utility to maintain clones of your github repos.
 
 Usage:
 
+-u      Github username.  Required.
 -d	Work on already-downloaded test data only.
 -v	Be verbose.
 -n	Testing only: show, do not do.
@@ -109,7 +111,7 @@ sub clone_or_update {
 	}
 }
 
-getopts('dvnh:', \%option);
+getopts('dvnhu:', \%option);
 
 if ($option{h}) {
 	&usage;
@@ -125,14 +127,18 @@ if ($option{n}) {
 if (defined $option{d}) {
 	$offline = 1;
 }
+if ($option{u}) {
+	$user = $option{u};
+}
+
 
 setup_root;
 
 # Arghh:  repos and starred are different.
 # FIXME: This handling of the original directory is stupid.
 my $orig;
-my @urls = ("https://api.github.com/users/saintaardvark/repos",
-	    "https://api.github.com/users/saintaardvark/starred" );
+my @urls = ("https://api.github.com/users/$user/repos",
+	    "https://api.github.com/users/$user/starred" );
 
 if ($offline == 1) {
 	local $/;
@@ -142,9 +148,9 @@ if ($offline == 1) {
 	$data = decode_json($json_text);
 } else {
 	# FIXME: Is the repos URL what I want?  Put it in config, or var up above.
-	debug("URL: https://api.github.com/users/saintaardvark/repos\n");
+	debug("URL: https://api.github.com/users/$user/repos\n");
 	# FIXME: no network option
-	my $reply = get("https://api.github.com/users/saintaardvark/repos");
+	my $reply = get("https://api.github.com/users/$user/repos");
 	# debug("\$reply = |$reply|");
 	$data = decode_json($reply);
 }
@@ -175,9 +181,9 @@ if ($offline == 1) {
 	$data = decode_json($json_text);
 } else {
 	# FIXME: Is the repos URL what I want?  Put it in config, or var up above.
-	debug("URL: https://api.github.com/users/saintaardvark/starred");
+	debug("URL: https://api.github.com/users/$user/starred");
 	# FIXME: no network option
-	my $reply = get("https://api.github.com/users/saintaardvark/starred");
+	my $reply = get("https://api.github.com/users/$user/starred");
 	# debug("\$reply = |$reply|");
 	$data = decode_json($reply);
 }
