@@ -129,6 +129,7 @@ if (defined $option{d}) {
 setup_root;
 
 # Arghh:  repos and starred are different.
+# FIXME: This handling of the original directory is stupid.
 my $orig;
 my @urls = ("https://api.github.com/users/saintaardvark/repos",
 	    "https://api.github.com/users/saintaardvark/starred" );
