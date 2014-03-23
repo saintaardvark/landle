@@ -26,10 +26,12 @@
 use strict;
 use Getopt::Std;
 # use Net::GitHub::V3;
+use Config::Simple;
 use LWP::Simple;
 use JSON::XS;
-use File::Path qw(make_path);
 use File::Basename qw(dirname);
+use File::HomeDir qw(home);
+use File::Path qw(make_path);
 use Cwd qw(abs_path);
 my %option;
 my $p_option;
@@ -40,6 +42,7 @@ my $data;
 my $project;
 my $user;
 
+my $cfg = new Config::Simple(home() . "/.landlerc");
 # FIXME: For testing
 my $root = abs_path("./repos");
 my @subdirs = ("forks", "mirrors", "private", "public", "starred", "watching");
