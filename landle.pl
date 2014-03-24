@@ -41,10 +41,9 @@ my $testing_only = 0;
 my $data;
 my $project;
 my $user;
-
-my $cfg = new Config::Simple(home() . "/.landlerc");
-# FIXME: For testing
-my $root = abs_path("./repos");
+my $rcfile = ".landlerc";
+my $rc;
+my $cfg;
 my @subdirs = ("forks", "mirrors", "private", "public", "starred", "watching");
 my @targets = qw(forks
 		 mirrors
@@ -134,6 +133,11 @@ if ($option{u}) {
 	$user = $option{u};
 }
 
+$rc = sprintf(home() . "/.landlerc");
+debug("Reading config file $rc...");
+my %cfg = new Config::Simple($rc)->vars();
+debug("Username: " . $cfg{"landle.user"});
+debug("Repodir: " . $cfg{"landle.repodir"});
 
 setup_root;
 
