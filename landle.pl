@@ -83,6 +83,7 @@ sub debug {
 
 sub setup_root {
 	# FIXME: eval / check for errors
+	my $root = shift;
 	debug("Setting up directories...");
 	foreach my $i (@subdirs) {
 		next if -d "${root}/$i";
@@ -139,7 +140,7 @@ my %cfg = new Config::Simple($rc)->vars();
 debug("Username: " . $cfg{"landle.user"});
 debug("Repodir: " . $cfg{"landle.repodir"});
 
-setup_root;
+setup_root($cfg{"landle.repodir"});
 
 # Arghh:  repos and starred are different.
 # FIXME: This handling of the original directory is stupid.
