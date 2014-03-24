@@ -94,9 +94,10 @@ sub setup_root {
 }
 
 sub clone_or_update {
-	my $project = shift;
-	my $target_dir = shift;
-	chdir("${root}/${target_dir}");
+	my $args = shift;
+	my $project = $args->{"project"};
+	my $cfg = $args->{"cfg"};
+	my $target_dir = $args->{"target_dir"};
 	my $repo_dir = $project->{"name"};
 	if (-d $repo_dir) {
 		debug("Assuming already cloned and need to update.");
@@ -170,11 +171,21 @@ foreach $project (@$data) {
 	# debug("\tFork?: " . $project->{"fork"});
 	# debug("\tClone URL: " . $project->{"clone_url"});
 	if ($project->{"fork"} == 1) {
-		clone_or_update($project, "forks");
+		clone_or_update({ project => $project,
+				  cfg => \%cfg,
+				  target_dir => "forks"});
 	} elsif ($project->{"private"} == 1) {
-		clone_or_update($project, "private");
+		clone_or_update({ project => $project,
+				  cfg => \%cfg,
+				  target_dir => "private"});
+	} elsif ($project->{"starred"} == 1) {
+		clone_or_update({ project => $project,
+				  cfg => \%cfg,
+				  target_dir => "starred"});
 	} else {
-		clone_or_update($project, "public");
+		clone_or_update({ project => $project,
+				  cfg => \%cfg,
+				  target_dir => "public"});
 	}
 }
 
@@ -197,5 +208,8 @@ if ($offline == 1) {
 }
 
 foreach $project (@$data) {
-	clone_or_update($project, "starred");
+	clone_or_update({ project => $project,
+			  cfg => \%cfg,
+			  target_dir => "starred"});
+
 }
