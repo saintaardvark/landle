@@ -144,53 +144,48 @@ debug("Repodir: " . $cfg{"landle.repodir"});
 
 setup_root($cfg{"landle.repodir"});
 
+
 # Arghh:  repos and starred are different.
 # FIXME: This handling of the original directory is stupid.
-my @urls = ("https://api.github.com/users/$user/repos",
-	    "https://api.github.com/users/$user/starred" );
-
 if ($offline == 1) {
 	local $/;
-	open(my $fh, '<', 'user.repos.json');
+	open(my $fh, '<', 'user.repos.json') or warn("Can't open user.repos.json: $!");
 	$orig = dirname(abs_path('user.repos.json'));
+	debug("Found user.repos.json in $orig, so will look there for user.starred.json as well.");
 	my $json_text = <$fh>;
 	$data = decode_json($json_text);
+	close($fh);
 } else {
-	# FIXME: Is the repos URL what I want?  Put it in config, or var up above.
-	debug("URL: https://api.github.com/users/$user/repos\n");
-	# FIXME: no network option
-	my $reply = get("https://api.github.com/users/$user/repos");
+	my $url = sprintf("https://api.github.com/users/%s/repos", $cfg{"landle.user"});
+	debug("Fetching $url");
+	my $reply = get($url);
 	# debug("\$reply = |$reply|");
-	$data = decode_json($reply);
+	push(@$data, @{decode_json($reply)});
 }
 
 # users.repos will give us forks, private and public.
 # FIXME: Testing option
+
 foreach $project (@$data) {
 	# debug("Name: " . $project->{"name"});
 	# debug("\tFork?: " . $project->{"fork"});
 	# debug("\tClone URL: " . $project->{"clone_url"});
 	if ($project->{"fork"} == 1) {
-		clone_or_update({ project => $project,
+		clone_or_pull({ project => $project,
 				  cfg => \%cfg,
 				  target_dir => "forks"});
 	} elsif ($project->{"private"} == 1) {
-		clone_or_update({ project => $project,
+		clone_or_pull({ project => $project,
 				  cfg => \%cfg,
 				  target_dir => "private"});
-	} elsif ($project->{"starred"} == 1) {
-		clone_or_update({ project => $project,
-				  cfg => \%cfg,
-				  target_dir => "starred"});
 	} else {
-		clone_or_update({ project => $project,
+		clone_or_pull({ project => $project,
 				  cfg => \%cfg,
 				  target_dir => "public"});
 	}
 }
 
 # And now starred.
-# FIXME: Combine these two using the @urls above.
 if ($offline == 1) {
 	chdir($orig);
 	system("pwd");
