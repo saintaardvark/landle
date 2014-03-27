@@ -44,6 +44,7 @@ my $user;
 my $rcfile = ".landlerc";
 my $rc;
 my $cfg;
+my $orig;
 my @subdirs = ("forks", "mirrors", "private", "public", "starred", "watching");
 my @targets = qw(forks
 		 mirrors
@@ -145,7 +146,6 @@ setup_root($cfg{"landle.repodir"});
 
 # Arghh:  repos and starred are different.
 # FIXME: This handling of the original directory is stupid.
-my $orig;
 my @urls = ("https://api.github.com/users/$user/repos",
 	    "https://api.github.com/users/$user/starred" );
 
@@ -199,10 +199,9 @@ if ($offline == 1) {
 	my $json_text = <$fh>;
 	$data = decode_json($json_text);
 } else {
-	# FIXME: Is the repos URL what I want?  Put it in config, or var up above.
-	debug("URL: https://api.github.com/users/$user/starred");
-	# FIXME: no network option
-	my $reply = get("https://api.github.com/users/$user/starred");
+	my $url = sprintf("https://api.github.com/users/%s/starred", $cfg{"landle.user"});
+	debug("Fetching $url");
+	my $reply = get($url);
 	# debug("\$reply = |$reply|");
 	$data = decode_json($reply);
 }
