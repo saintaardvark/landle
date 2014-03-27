@@ -94,7 +94,7 @@ sub setup_root {
 	debug("Done.");
 }
 
-sub clone_or_update {
+sub clone_or_pull {
 	my $args = shift;
 	my $project = $args->{"project"};
 	my $cfg = $args->{"cfg"};
@@ -202,8 +202,7 @@ if ($offline == 1) {
 }
 
 foreach $project (@$data) {
-	clone_or_update({ project => $project,
+	clone_or_pull({ project => $project,
 			  cfg => \%cfg,
 			  target_dir => "starred"});
-
 }
