@@ -20,6 +20,7 @@ It'll organize your repos like so:
 
 Perl, plus the following non-base modules:
 
+* Config::Simple
 * LWP::Simple;
 * JSON::XS;
 
