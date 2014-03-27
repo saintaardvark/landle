@@ -99,6 +99,7 @@ sub clone_or_pull {
 	my $project = $args->{"project"};
 	my $cfg = $args->{"cfg"};
 	my $target_dir = $args->{"target_dir"};
+	chdir($cfg->{"landle.repodir"} . "/${target_dir}");
 	my $repo_dir = $project->{"name"};
 	if (-d $repo_dir) {
 		debug("Assuming already cloned and need to update.");
