@@ -37,8 +37,8 @@ GPL v3.
 
 If you want to use test data for working offline, fetch it like so:
 
-    wget https://api.github.com/users/[username]/starred -O users.starred.json
-    wget https://api.github.com/users/[username]/repos -O users.repos.json
+    wget https://api.github.com/users/[username]/starred -O user.starred.json
+    wget https://api.github.com/users/[username]/repos -O user.repos.json
 
 ## Home Page
 
