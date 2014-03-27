@@ -99,6 +99,8 @@ sub clone_or_pull {
 	my $project = $args->{"project"};
 	my $cfg = $args->{"cfg"};
 	my $target_dir = $args->{"target_dir"};
+	debug("Target dir: $target_dir");
+	debug("Repo dir: " . $cfg->{"landle.repodir"});
 	chdir($cfg->{"landle.repodir"} . "/${target_dir}");
 	my $repo_dir = $project->{"name"};
 	if (-d $repo_dir) {
