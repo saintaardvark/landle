@@ -45,13 +45,12 @@ my $rcfile = ".landlerc";
 my $rc;
 my $cfg;
 my $orig;
-my @subdirs = ("forks", "mirrors", "private", "public", "starred", "watching");
-my @targets = qw(forks
+my @subdirs = qw(forks
 		 mirrors
 		 private
 		 public
 		 starred
-		 watched);
+		 watching);
 
 sub usage {
 	print <<USAGE;
