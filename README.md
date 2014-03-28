@@ -7,12 +7,12 @@ me...so here's landle.
 
 It'll organize your repos like so:
 
-+ repos
-  ├── forks    (public fork repos)
-  ├── mirrors  (public mirror repos)
-  ├── private  (private repos)
-  ├── public   (public repos)
-  └── watched  (public watched repos)
++ repos 
+  ├── forks    (public fork repos) 
+  ├── mirrors  (public mirror repos) 
+  ├── private  (private repos) 
+  ├── public   (public repos) 
+  └── watched  (public watched repos) 
 
 (Again, straight from ghsync.  All hail the original author!)
 
