@@ -50,8 +50,11 @@ Then supply the "-d" option.
 Perl, plus the following non-base modules:
 
 * Config::Simple
-* LWP::Simple;
-* JSON::XS;
+* JSON::XS
+
+On Debian/Ubuntu, you can install them like so:
+
+     apt-get install libconfig-simple-perl libjson-xs-perl
 
 ## Shortcomings
 
