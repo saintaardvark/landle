@@ -56,11 +56,18 @@ On Debian/Ubuntu, you can install them like so:
 
      apt-get install libconfig-simple-perl libjson-xs-perl
 
-## Shortcomings
+## Shortcomings and TODO
 
-* Direct fetch of Github v3 API URLs rather than using something like
+Bad:
+
+* Direct fetch/parsing of Github v3 API URLs rather than using something like
   [Pithub][1]
-* While it (so far) works for me, it's pretty young just yet.
+* Direct running of git commands rather than using Perl Git module
+
+TODO:
+
+* Look for .landlerc in pwd, home directory or other specified directory
+* Per-repo hooks using project sections in .landlerc
 
 ## License
 
