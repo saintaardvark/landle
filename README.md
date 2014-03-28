@@ -45,7 +45,13 @@ If you want to use test data for working offline, fetch it like so:
 
 Either on [Github][2] or [my own repo.][3]
 
+## Thanks!
+
+* The authors of [ghsync][0] for the idea
+* The Random [Javascript Project Name Generator][4] for "landle"
+
 [0]: https://github.com/kennethreitz/ghsync
 [1]: https://metacpan.org/pod/Pithub
 [2]: https://github.com/saintaardvark/landle
 [3]: http://git.saintaardvarkthecarpeted.com/?p=landle.git;a=summary
+[4]: http://mrsharpoblunto.github.io/foswig.js/
