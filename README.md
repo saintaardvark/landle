@@ -29,6 +29,22 @@ Create ~/.landlerc, which should look like this:
 Then just run "landle".  It'll download the info it needs from Github,
 create the directories under repodir, and clone or pull as necessary.
 
+Additional options:
+
+    -d	Work on already-downloaded test data only (see below)
+    -v	Be verbose.
+    -n	Testing only: show what clone/pull/mkdir operations would happen.
+    -h	Help
+
+## Test data
+
+If you want to use test data for working offline, fetch it like so:
+
+    wget https://api.github.com/users/[username]/starred -O user.starred.json
+    wget https://api.github.com/users/[username]/repos -O user.repos.json
+
+Then supply the "-d" option.
+
 ## Dependencies
 
 Perl, plus the following non-base modules:
@@ -47,21 +63,14 @@ Perl, plus the following non-base modules:
 
 GPL v3.
 
-## Test data
-
-If you want to use test data for working offline, fetch it like so:
-
-    wget https://api.github.com/users/[username]/starred -O user.starred.json
-    wget https://api.github.com/users/[username]/repos -O user.repos.json
-
 ## Home Page
 
-Either on [Github][2] or [my own repo.][3]
+Either on [Github][2] or [my own repo][3].
 
 ## Thanks!
 
 * The authors of [ghsync][0] for the idea
-* The Random [Javascript Project Name Generator][4] for "landle"
+* The Random [Javascript Project Name Generator][4] for the name "landle"
 
 [0]: https://github.com/kennethreitz/ghsync
 [1]: https://metacpan.org/pod/Pithub
