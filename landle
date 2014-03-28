@@ -60,7 +60,6 @@ $0: A Small but Useful(tm) utility to maintain clones of your github repos.
 
 Usage:
 
--u      Github username.  Required.
 -d	Work on already-downloaded test data only.
 -v	Be verbose.
 -n	Testing only: show, do not do.
@@ -119,7 +118,7 @@ sub clone_or_pull {
 	}
 }
 
-getopts('dvnhu:', \%option);
+getopts('dvnh', \%option);
 
 if ($option{h}) {
 	&usage;
@@ -135,9 +134,6 @@ if ($option{n}) {
 if (defined $option{d}) {
 	$offline = 1;
 }
-if ($option{u}) {
-	$user = $option{u};
-}
 
 $rc = sprintf(home() . "/.landlerc");
 debug("Reading config file $rc...");
@@ -146,7 +142,6 @@ debug("Username: " . $cfg{"landle.user"});
 debug("Repodir: " . $cfg{"landle.repodir"});
 
 setup_root($cfg{"landle.repodir"});
-
 
 # Arghh:  repos and starred are different.
 # FIXME: This handling of the original directory is stupid.
