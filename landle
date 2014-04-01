@@ -70,7 +70,7 @@ USAGE
 
 sub complain_and_die {
 	my $error = shift;
-	print STDERR "$error\n\n";
+	carp("$error");
 	&usage;
 }
 
