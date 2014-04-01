@@ -137,6 +137,7 @@ if ($option{f}) {
 } else {
 	push my @possible, sprintf("%s/.landlerc", cwd());
 	push    @possible, sprintf("%s/.landlerc", home());
+	# FIXME: I'm not sure how best to do a "hey, none of that works" message.
 	SEARCH: foreach $rc (@possible) {
 		if (-f $rc) {
 			debug("Found $i in cwd, so using that.", $verbose);
