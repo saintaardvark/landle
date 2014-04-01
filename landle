@@ -60,7 +60,7 @@ Usage:
 
 -d	Work on already-downloaded test data only.
 -v	Be verbose.
--f [file] Specify path to .landlerc; by default, looks in cwd first, then home directory.
+-f [file] Specify path to config file; by default, looks in cwd first, then home directory.
 -n	Testing only: show, do not do.
 -h	This helpful message.
 
