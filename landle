@@ -129,10 +129,22 @@ if (defined $option{d}) {
 	$offline = 1;
 }
 
-$rc = sprintf(home() . "/.landlerc");
-my %cfg = new Config::Simple($rc)->vars();
-debug("Username: " . $cfg{"landle.user"});
-debug("Repodir: " . $cfg{"landle.repodir"});
+# FIXME: Might want to use Config::Simple to do this; maybe we can do
+# try/finally with it.
+if ($option{f}) {
+	$rc = $option{f};
+	debug("Using $rc as directed.", $verbose);
+} else {
+	push my @possible, sprintf("%s/.landlerc", cwd());
+	push    @possible, sprintf("%s/.landlerc", home());
+	SEARCH: foreach $rc (@possible) {
+		if (-f $rc) {
+			debug("Found $i in cwd, so using that.", $verbose);
+			last SEARCH;
+		}
+	}
+}
+
 debug("Reading config file $rc...", $verbose);
 debug("Username: " . $cfg{"landle.user"}, $verbose);
 debug("Repodir: " . $cfg{"landle.repodir"}, $verbose);
