@@ -77,6 +77,7 @@ TODO:
 
 * Per-repo hooks using project sections in .landlerc
 * Better control over verbosity
+* Make "userdir" optional (will assume cwd)
 
 ## License
 
