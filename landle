@@ -140,7 +140,7 @@ if ($option{f}) {
 	# FIXME: I'm not sure how best to do a "hey, none of that works" message.
 	SEARCH: foreach $rc (@possible) {
 		if (-f $rc) {
-			debug("Found $i in cwd, so using that.", $verbose);
+			debug("Found $rc, so using that.", $verbose);
 			last SEARCH;
 		}
 	}
