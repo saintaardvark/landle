@@ -29,7 +29,9 @@ use JSON::XS;
 use File::Basename qw(dirname);
 use File::HomeDir qw(home);
 use File::Path qw(make_path);
+use Log::Message::Simple qw(msg error debug carp croak cluck confess);
 use Cwd qw(abs_path);
+
 my $version = "1.0";
 my %option;
 my $p_option;
@@ -72,23 +74,16 @@ sub complain_and_die {
 	&usage;
 }
 
-sub debug {
-	if ($verbose > 0) {
-		my $log = shift;
-		print "$log\n";
-	}
-}
-
 sub setup_root {
 	# FIXME: eval / check for errors
 	my $root = shift;
-	debug("Setting up directories...");
+	debug("Setting up directories...", $verbose);
 	foreach my $i (@subdirs) {
 		next if -d "${root}/$i";
-		make_path("${root}/$i", { verbose => 1,
+		make_path("${root}/$i", { verbose => $verbose,
 					  mode    => 0755 });
 	}
-	debug("Done.");
+	debug("Done.", $verbose);
 }
 
 sub clone_or_pull {
@@ -96,21 +91,21 @@ sub clone_or_pull {
 	my $project = $args->{"project"};
 	my $cfg = $args->{"cfg"};
 	my $target_dir = $args->{"target_dir"};
-	debug("Target dir: $target_dir");
-	debug("Repo dir: " . $cfg->{"landle.repodir"});
+	debug("Target dir: $target_dir", $verbose);
+	debug("Repo dir: " . $cfg->{"landle.repodir"}, $verbose);
 	chdir($cfg->{"landle.repodir"} . "/${target_dir}");
 	my $repo_dir = $project->{"name"};
 	if (-d $repo_dir) {
-		debug("Assuming already cloned and need to update.");
+		debug("Assuming already cloned and need to update.", $verbose);
 		# FIXME: Would git fetch be better?
-		debug("cd $repo_dir && git pull origin master");
+		debug("cd $repo_dir && git pull origin master", $verbose);
 		return if $testing_only;
 		chdir("$repo_dir");
 		system("git pull origin master");
 	} else {
-		debug("Assuming need to clone.");
+		debug("Assuming need to clone.", $verbose);
 		my $clone = sprintf("git clone %s", $project->{"clone_url"});
-		debug($clone);
+		debug($clone, $verbose);
 		return if $testing_only;
 		system($clone);
 	}
@@ -134,10 +129,12 @@ if (defined $option{d}) {
 }
 
 $rc = sprintf(home() . "/.landlerc");
-debug("Reading config file $rc...");
 my %cfg = new Config::Simple($rc)->vars();
 debug("Username: " . $cfg{"landle.user"});
 debug("Repodir: " . $cfg{"landle.repodir"});
+debug("Reading config file $rc...", $verbose);
+debug("Username: " . $cfg{"landle.user"}, $verbose);
+debug("Repodir: " . $cfg{"landle.repodir"}, $verbose);
 
 setup_root($cfg{"landle.repodir"});
 
@@ -147,15 +144,15 @@ if ($offline == 1) {
 	local $/;
 	open(my $fh, '<', 'user.repos.json') or warn("Can't open user.repos.json: $!");
 	$orig = dirname(abs_path('user.repos.json'));
-	debug("Found user.repos.json in $orig, so will look there for user.starred.json as well.");
+	debug("Found user.repos.json in $orig, so will look there for user.starred.json as well.", $verbose);
 	my $json_text = <$fh>;
 	$data = decode_json($json_text);
 	close($fh);
 } else {
 	my $url = sprintf("https://api.github.com/users/%s/repos", $cfg{"landle.user"});
-	debug("Fetching $url");
+	debug("Fetching $url", $verbose);
 	my $reply = get($url);
-	# debug("\$reply = |$reply|");
+	# debug("\$reply = |$reply|", $verbose);
 	push(@$data, @{decode_json($reply)});
 }
 
@@ -163,9 +160,9 @@ if ($offline == 1) {
 # FIXME: Testing option
 
 foreach $project (@$data) {
-	# debug("Name: " . $project->{"name"});
-	# debug("\tFork?: " . $project->{"fork"});
-	# debug("\tClone URL: " . $project->{"clone_url"});
+	# debug("Name: " . $project->{"name"}, $verbose);
+	# debug("\tFork?: " . $project->{"fork"}, $verbose);
+	# debug("\tClone URL: " . $project->{"clone_url"}, $verbose);
 	if ($project->{"fork"} == 1) {
 		clone_or_pull({ project => $project,
 				  cfg => \%cfg,
@@ -191,9 +188,9 @@ if ($offline == 1) {
 	$data = decode_json($json_text);
 } else {
 	my $url = sprintf("https://api.github.com/users/%s/starred", $cfg{"landle.user"});
-	debug("Fetching $url");
+	debug("Fetching $url", $verbose);
 	my $reply = get($url);
-	# debug("\$reply = |$reply|");
+	# debug("\$reply = |$reply|", $verbose);
 	$data = decode_json($reply);
 }
 
