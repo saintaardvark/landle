@@ -148,6 +148,7 @@ if ($option{f}) {
 }
 
 debug("Reading config file $rc...", $verbose);
+my %cfg = new Config::Simple($rc)->vars();
 debug("Username: " . $cfg{"landle.user"}, $verbose);
 debug("Repodir: " . $cfg{"landle.repodir"}, $verbose);
 
