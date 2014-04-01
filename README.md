@@ -75,7 +75,6 @@ Bad:
 
 TODO:
 
-* Look for .landlerc in pwd, home directory or other specified directory
 * Per-repo hooks using project sections in .landlerc
 * Better control over verbosity
 
