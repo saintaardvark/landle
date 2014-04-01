@@ -18,7 +18,7 @@ It'll organize your repos like so:
 
 ## Usage
 
-Create ~/.landlerc, which should look like this:
+Create an INI-style config file like this:
 
     [landle]
     # Github username
@@ -26,13 +26,20 @@ Create ~/.landlerc, which should look like this:
     # Where Landle should store its repos
     repodir = /home/aardvark/landle
 
+Landle will look for its config file in this order:
+
+* `.landlerc` in the directory it's run from (which allows for per-repo configs)
+* `~/.landlerc` (per-user config)
+* or as specified with the "-f" option (global!)
+
 Then just run "landle".  It'll download the info it needs from Github,
-create the directories under repodir, and clone or pull as necessary.
+create the directories under `repodir`, and clone or pull as necessary.
 
 Additional options:
 
     -d	Work on already-downloaded test data only (see below)
     -v	Be verbose.
+	-f [file] Specify path to config file.
     -n	Testing only: show what clone/pull/mkdir operations would happen.
     -h	Help
 
