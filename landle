@@ -60,6 +60,7 @@ Usage:
 
 -d	Work on already-downloaded test data only.
 -v	Be verbose.
+-f [file] Specify path to .landlerc; by default, looks in cwd first, then home directory.
 -n	Testing only: show, do not do.
 -h	This helpful message.
 
@@ -111,7 +112,7 @@ sub clone_or_pull {
 	}
 }
 
-getopts('dvnh', \%option);
+getopts('dvf:nh', \%option);
 
 if ($option{h}) {
 	&usage;
