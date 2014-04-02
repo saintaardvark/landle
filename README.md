@@ -79,7 +79,10 @@ TODO:
 * Better control over verbosity
 * Make "userdir" optional (will assume cwd)
 * For forks, add "upstream" remote.  Not sure how to do that...
-* What to do if there's a fork and a star?
+* What to do if a repo goes away?  Add a "purge = true/false" option,
+  or even a "--purge" option for landle itself.
+* That implies overwriting config file options, which calls for better
+  arg handling; there must be a Perl module which does this better.
 
 ## License
 
