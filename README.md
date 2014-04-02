@@ -76,6 +76,7 @@ Bad:
 TODO:
 
 * Per-repo hooks using project sections in .landlerc
+* How to distinguish INI section for landle the program and landle the repo?
 * Better control over verbosity
 * Better error handling for missing config
 * Make "userdir" optional (will assume cwd)
@@ -84,6 +85,7 @@ TODO:
   or even a "--purge" option for landle itself.
 * That implies overwriting config file options, which calls for better
   arg handling; there must be a Perl module which does this better.
+
 
 ## License
 
