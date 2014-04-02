@@ -77,6 +77,7 @@ TODO:
 
 * Per-repo hooks using project sections in .landlerc
 * Better control over verbosity
+* Better error handling for missing config
 * Make "userdir" optional (will assume cwd)
 * For forks, add "upstream" remote.  Not sure how to do that...
 * What to do if a repo goes away?  Add a "purge = true/false" option,
