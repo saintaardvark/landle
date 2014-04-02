@@ -109,6 +109,10 @@ sub clone_or_pull {
 		debug($clone, $verbose);
 		return if $testing_only;
 		system($clone);
+		if (defined ($cfg->{"landle.post-clone-hook"})) {
+			debug("Running post-clone-hook.", $verbose);
+			system($cfg->{"landle.post-clone-hook"});
+		}
 	}
 }
 
