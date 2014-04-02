@@ -30,7 +30,7 @@ use File::Basename qw(dirname);
 use File::HomeDir qw(home);
 use File::Path qw(make_path);
 use Log::Message::Simple qw(msg error debug carp croak cluck confess);
-use Cwd;
+use Cwd qw(abs_path);
 
 my $version = "1.1";
 my %option;
