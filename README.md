@@ -1,6 +1,6 @@
 # landle
 
-Welcome to landle v1.0, a Small but Useful(tm) utility to clone your github
+Welcome to landle v1.1, a Small but Useful(tm) utility to clone your github
 repos: those you watch, own or star.  It's a straight-up ripoff of
 [ghsync][0]. ghsync is a great idea, but I couldn't get it to work for
 me...so here's landle.
@@ -88,6 +88,11 @@ GPL v3.
 ## Home Page
 
 Either on [Github][2] or [my own repo][3].
+
+## Changelog
+
+* 1.0: First release
+* 1.1: Config file can reside in different directories
 
 ## Thanks!
 

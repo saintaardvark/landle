@@ -32,7 +32,7 @@ use File::Path qw(make_path);
 use Log::Message::Simple qw(msg error debug carp croak cluck confess);
 use Cwd;
 
-my $version = "1.0";
+my $version = "1.1";
 my %option;
 my $p_option;
 my $verbose = 0;
