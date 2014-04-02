@@ -76,10 +76,12 @@ Bad:
 TODO:
 
 * Per-repo hooks using project sections in .landlerc
+* How to distinguish INI section for landle the program and landle the repo?
 * Better control over verbosity
 * Make "userdir" optional (will assume cwd)
 * For forks, add "upstream" remote.  Not sure how to do that...
 * What to do if there's a fork and a star?
+
 
 ## License
 
