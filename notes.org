@@ -1,6 +1,19 @@
-
-* Get /users/:user/starred
-  http://developer.github.com/v3/activity/starred
-
-* Two approaches: Github API module, or YAML
-  - YAML more flexible
+* Hooks
+  - How to do this?
+  - One approach is to just add steps as necessary.  Example: I want
+    sommething that'll set the user/email correctly for each repo, so
+    I can chose between different identies.  That calls for a
+    post-clone hook pointing at a simple shell script.
+  - Another is git's own approach:  a hooks dir, pre-populated with
+    example scripts.  Not so much for the "here's how to do
+    everything" part, but for the idea of setting up *all* hooks at
+    once in the code for landle itself.
+  - It might also be worth limiting what landle can do.  Really, after
+    cloning how much will you want to do that can't be handled by git
+    hooks themselves?  Maybe it's just a matter of setting up those
+    hooks, or the settings, which can be handled at initial creation
+    time.
+  - I think I like that idea best.  Set up a hook script for
+    post-creation, and let that be it.  Add better logging so that
+    (say) new repos can be noticed, and let that be it.  (Email in
+    post-creation hook?)
