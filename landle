@@ -64,6 +64,8 @@ Usage:
 -n	Testing only: show, do not do.
 -h	This helpful message.
 
+See the README.md file for details on the config file format.
+
 Version: $version
 USAGE
 	exit 1;
