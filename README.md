@@ -23,8 +23,10 @@ Create an INI-style config file like this:
     [landle]
     # Github username
     user = saintaardvark
-    # Where Landle should store its repos
+    # Where landle should store its repos
     repodir = /home/aardvark/landle
+	# Optional: post-clone hook
+	post-clone-hook = /home/aardvark/src/landle/post-clone-example.sh
 
 Landle will look for its config file in this order:
 
@@ -33,7 +35,10 @@ Landle will look for its config file in this order:
 * or as specified with the "-f" option (global!)
 
 Then just run "landle".  It'll download the info it needs from Github,
-create the directories under `repodir`, and clone or pull as necessary.
+create the directories under `repodir`, and clone or pull as
+necessary.  If the optional `post-clone-hook` setting is present, it's
+assumed to be the path to a script or some such; landle will run it
+after cloning a new repo.
 
 Additional options:
 
