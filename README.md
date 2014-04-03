@@ -75,8 +75,7 @@ Bad:
 
 TODO:
 
-* Per-repo hooks using project sections in .landlerc
-* How to distinguish INI section for landle the program and landle the repo?
+* Per-repo settings/hooks (would require rename of global landle section)
 * Better control over verbosity
 * Better error handling for missing config
 * Make "userdir" optional (will assume cwd)
