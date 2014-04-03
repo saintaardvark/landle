@@ -107,10 +107,14 @@ sub clone_or_pull {
 		debug("Assuming need to clone.", $verbose);
 		my $clone = sprintf("git clone %s", $project->{"clone_url"});
 		debug($clone, $verbose);
-		return if $testing_only;
-		system($clone);
+		# FIXME: This double check to see if we're in testing
+		# mode seems...inelegant.
+		if ($testing_only == 0) {
+			system($clone);
+		}
 		if (defined ($cfg->{"landle.post-clone-hook"})) {
-			debug("Running post-clone-hook.", $verbose);
+			debug("Running post-clone-hook: ". $cfg->{"landle.post-clone-hook"}, $verbose);
+			return if $testing_only;
 			system($cfg->{"landle.post-clone-hook"});
 		}
 	}
