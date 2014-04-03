@@ -95,11 +95,6 @@ GPL v3.
 
 Either on [Github][2] or [my own repo][3].
 
-## Changelog
-
-* 1.0: First release
-* 1.1: Config file can reside in different directories
-
 ## Thanks!
 
 * The authors of [ghsync][0] for the idea
