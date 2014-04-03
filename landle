@@ -213,7 +213,7 @@ if ($offline == 1) {
 }
 
 foreach $project (@$data) {
-	clone_or_pull({ project => $project,
-			  cfg => \%cfg,
+	clone_or_pull({ project	     => $project,
+			  cfg	     => \%cfg,
 			  target_dir => "starred"});
 }
