@@ -200,7 +200,6 @@ foreach $project (@$data) {
 # And now starred.
 if ($offline == 1) {
 	chdir($orig);
-	system("pwd");
 	local $/;
 	open(my $fh, '<', 'user.starred.json') or die("Can't open: $!");
 	my $json_text = <$fh>;
