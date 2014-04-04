@@ -38,7 +38,7 @@ Then just run "landle".  It'll download the info it needs from Github,
 create the directories under `repodir`, and clone or pull as
 necessary.  If the optional `post-clone-hook` setting is present, it's
 assumed to be the path to a script or some such; landle will run it
-after cloning a new repo.
+after cloning a new repo, and within that repo directory.
 
 Additional options:
 
