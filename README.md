@@ -87,9 +87,15 @@ TODO:
 * Make "userdir" optional (will assume cwd)
 * For forks, add "upstream" remote.  Not sure how to do that...
 * What to do if a repo goes away?  Add a "purge = true/false" option,
-  or even a "--purge" option for landle itself.
-* That implies overwriting config file options, which calls for better
-  arg handling; there must be a Perl module which does this better.
+  or even a "--purge" option for landle itself. Might also want to
+  consider two cases:
+  - a repo no longer starred/watched (no longer interested; default
+    == delete)
+  - a starred/watched repo that has disappeared (still interested, but
+    the repo has been deleted; default == keep)
+* That might imply overwriting config file options, which calls for
+  better arg handling; there must be a Perl module which does this
+  better.
 
 
 ## License
