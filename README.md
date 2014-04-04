@@ -40,6 +40,12 @@ necessary.  If the optional `post-clone-hook` setting is present, it's
 assumed to be the path to a script or some such; landle will run it
 after cloning a new repo, and within that repo directory.
 
+(Note that landle is meant to maintain more-or-less read-only mirrors.
+It'd be interesting to think about a pre-update hook or some such
+that'd push any commits -- a sort of automated
+let's-push-all-the-commits-I-made-on-the-airplane mode -- but that
+gets more complicated than I want to think about.)
+
 Additional options:
 
     -d	Work on already-downloaded test data only (see below)
@@ -96,7 +102,6 @@ TODO:
 * That might imply overwriting config file options, which calls for
   better arg handling; there must be a Perl module which does this
   better.
-
 
 ## License
 
