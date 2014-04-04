@@ -1,6 +1,6 @@
 # landle
 
-Welcome to landle v1.2, a Small but Useful(tm) utility to clone your
+Welcome to landle v1.3, a Small but Useful(tm) utility to clone your
 github repos: those you watch, own or star.  It's a straight-up ripoff
 of [ghsync][0]. ghsync is a great idea, but I couldn't get it to work
 for me...so here's landle.
@@ -25,8 +25,8 @@ Create an INI-style config file like this:
     user = saintaardvark
     # Where landle should store its repos
     repodir = /home/aardvark/landle
-	# Optional: post-clone hook
-	post-clone-hook = /home/aardvark/src/landle/post-clone-example.sh
+    # Optional: post-clone hook
+    post-clone-hook = /home/aardvark/src/landle/post-clone-example.sh
 
 Landle will look for its config file in this order:
 
