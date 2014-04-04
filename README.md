@@ -25,8 +25,8 @@ Create an INI-style config file like this:
     user = saintaardvark
     # Where landle should store its repos
     repodir = /home/aardvark/landle
-	# Optional: post-clone hook
-	post-clone-hook = /home/aardvark/src/landle/post-clone-example.sh
+    # Optional: post-clone hook
+    post-clone-hook = /home/aardvark/src/landle/post-clone-example.sh
 
 Landle will look for its config file in this order:
 
