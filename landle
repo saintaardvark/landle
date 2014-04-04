@@ -118,6 +118,7 @@ sub clone_or_pull {
 		if (defined ($cfg->{"landle.post-clone-hook"})) {
 			debug("Running post-clone-hook: ". $cfg->{"landle.post-clone-hook"}, $verbose);
 			return if $testing_only;
+			chdir($target_dir);
 			system($cfg->{"landle.post-clone-hook"});
 		}
 	}
