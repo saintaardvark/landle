@@ -102,6 +102,8 @@ TODO:
 * That might imply overwriting config file options, which calls for
   better arg handling; there must be a Perl module which does this
   better.
+* Ctrl-c kills individual git processes, not landle itself.  This
+  might be fixed by using Perl Git module.
 
 ## License
 
