@@ -89,6 +89,7 @@ sub setup_root {
 	debug("Done.", $verbose);
 }
 
+# FIXME: My variable names here are a mess.
 sub clone_or_pull {
 	my $args = shift;
 	my $project = $args->{"project"};
