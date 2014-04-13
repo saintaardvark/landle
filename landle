@@ -105,14 +105,14 @@ sub clone_or_pull {
 	debug("Project name: " . $project->{"name"});
 	debug("Target dir: " . $cfg->{"landle.repodir"} . "/$target_dir", $verbose);
 	chdir($cfg->{"landle.repodir"} . "/${target_dir}");
-	my $repo_dir = $project->{"name"};
-	if (-d $repo_dir) {
+	# my $repo_dir = $project->{"name"};
+	if (-d $project->{"name"}) {
 		debug("I can see directory " . $project->{"name"}, $verbose);
 		debug("Assuming already cloned and need to update.", $verbose);
 		# FIXME: Would git fetch be better?
-		debug("cd $repo_dir && git pull origin master", $verbose);
+		debug("cd " . $project->{"name"} . " && git pull origin master", $verbose);
 		return if $testing_only;
-		chdir("$repo_dir");
+		chdir($project->{"name"});
 		system("git pull origin master");
 	} else {
 		debug("Can't see directory " . $project->{"name"}, $verbose);
