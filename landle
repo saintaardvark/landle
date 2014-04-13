@@ -117,7 +117,6 @@ sub clone_or_pull {
 	} else {
 		debug("Can't see directory " . $project->{"name"}, $verbose);
 		debug("Assuming need to clone.", $verbose);
-		chdir($cfg->{"landle.repodir"});
 		my $clone = sprintf("git clone %s", $project->{"clone_url"});
 		debug($clone, $verbose);
 		# FIXME: This double check to see if we're in testing
