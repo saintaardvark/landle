@@ -102,14 +102,16 @@ sub clone_or_pull {
 	debug("Target dir: " . $cfg->{"landle.repodir"} . "/$target_dir", $verbose);
 	chdir($cfg->{"landle.repodir"} . "/${target_dir}");
 	# my $repo_dir = $project->{"name"};
+	my $git = Git::Wrapper->new($project->{"name"});
 	if (-d $project->{"name"}) {
 		debug("I can see directory " . $project->{"name"}, $verbose);
 		debug("Assuming already cloned and need to update.", $verbose);
 		# FIXME: Would git fetch be better?
 		debug("cd " . $project->{"name"} . " && git pull origin master", $verbose);
 		return if $testing_only;
-		chdir($project->{"name"});
-		system("git pull origin master");
+		# chdir($project->{"name"});
+		# system("git pull origin master");
+		$git->pull("origin");
 	} else {
 		debug("Can't see directory " . $project->{"name"}, $verbose);
 		debug("Assuming need to clone.", $verbose);
@@ -118,7 +120,8 @@ sub clone_or_pull {
 		# FIXME: This double check to see if we're in testing
 		# mode seems...inelegant.
 		if ($testing_only == 0) {
-			system($clone);
+			# system($clone);
+			$git->clone($project->{"clone_url"});
 		}
 		if (defined ($cfg->{"landle.post-clone-hook"})) {
 			debug("cd $target_dir && " . $cfg->{"landle.post-clone-hook"} , $verbose);
