@@ -31,6 +31,7 @@ use File::HomeDir qw(home);
 use File::Path qw(make_path);
 use Log::Message::Simple qw(msg error debug carp croak cluck confess);
 use Cwd qw(cwd abs_path);
+use Git::Wrapper;
 
 my $version = "1.4";
 my %option;
