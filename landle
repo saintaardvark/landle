@@ -32,7 +32,7 @@ use File::Path qw(make_path);
 use Log::Message::Simple qw(msg error debug carp croak cluck confess);
 use Cwd qw(cwd abs_path);
 
-my $version = "1.3";
+my $version = "1.4";
 my %option;
 my $p_option;
 my $verbose = 0;
@@ -94,25 +94,29 @@ sub setup_root {
 	debug("Done.", $verbose);
 }
 
+# FIXME: My variable names here are a mess.
+# project: hash containing Github info about an individual repo.
+# target_dir: which of public, forks, etc the repo should be put.
 sub clone_or_pull {
 	my $args = shift;
 	my $project = $args->{"project"};
 	my $cfg = $args->{"cfg"};
 	my $target_dir = $args->{"target_dir"};
-	debug("Target dir: $target_dir", $verbose);
-	debug("Repo dir: " . $cfg->{"landle.repodir"}, $verbose);
+	debug("Project name: " . $project->{"name"});
+	debug("Target dir: " . $cfg->{"landle.repodir"} . "/$target_dir", $verbose);
 	chdir($cfg->{"landle.repodir"} . "/${target_dir}");
-	my $repo_dir = $project->{"name"};
-	if (-d $repo_dir) {
+	# my $repo_dir = $project->{"name"};
+	if (-d $project->{"name"}) {
+		debug("I can see directory " . $project->{"name"}, $verbose);
 		debug("Assuming already cloned and need to update.", $verbose);
 		# FIXME: Would git fetch be better?
-		debug("cd $repo_dir && git pull origin master", $verbose);
+		debug("cd " . $project->{"name"} . " && git pull origin master", $verbose);
 		return if $testing_only;
-		chdir("$repo_dir");
+		chdir($project->{"name"});
 		system("git pull origin master");
 	} else {
+		debug("Can't see directory " . $project->{"name"}, $verbose);
 		debug("Assuming need to clone.", $verbose);
-		chdir($cfg->{"landle.repodir"});
 		my $clone = sprintf("git clone %s", $project->{"clone_url"});
 		debug($clone, $verbose);
 		# FIXME: This double check to see if we're in testing

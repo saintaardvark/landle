@@ -1,6 +1,6 @@
 # landle
 
-Welcome to landle v1.3, a Small but Useful(tm) utility to clone your
+Welcome to landle v1.4, a Small but Useful(tm) utility to clone your
 github repos: those you watch, own or star.  It's a straight-up ripoff
 of [ghsync][0]. ghsync is a great idea, but I couldn't get it to work
 for me...so here's landle.
@@ -102,6 +102,8 @@ TODO:
 * That might imply overwriting config file options, which calls for
   better arg handling; there must be a Perl module which does this
   better.
+* Ctrl-c kills individual git processes, not landle itself.  This
+  might be fixed by using Perl Git module.
 
 ## License
 
