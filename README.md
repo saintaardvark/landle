@@ -56,12 +56,12 @@ Additional options:
 
 ## Test data
 
-If you want to use test data for working offline, fetch it like so:
+If you want test data for the "-d" option , fetch it like so:
 
     wget https://api.github.com/users/[username]/starred -O user.starred.json
     wget https://api.github.com/users/[username]/repos -O user.repos.json
 
-Then supply the "-d" option.
+Then you can work offline.
 
 ## Dependencies
 
