@@ -175,7 +175,7 @@ setup_root($cfg{"landle.repodir"});
 # FIXME: This handling of the original directory is stupid.
 if ($offline == 1) {
 	local $/;
-	open(my $fh, '<', 'user.repos.json') or warn("Can't open user.repos.json: $!");
+	open(my $fh, '<', 'user.repos.json') or complain_and_die("Can't open user.repos.json: $!");
 	$orig = dirname(abs_path('user.repos.json'));
 	debug("Found user.repos.json in $orig, so will look there for user.starred.json as well.", $verbose);
 	my $json_text = <$fh>;
@@ -218,7 +218,7 @@ foreach $project (@$data) {
 if ($offline == 1) {
 	chdir($orig);
 	local $/;
-	open(my $fh, '<', 'user.starred.json') or die("Can't open: $!");
+	open(my $fh, '<', 'user.starred.json') or complain_and_die("Can't open user.starred.json: $!");
 	my $json_text = <$fh>;
 	$data = decode_json($json_text);
 } else {
