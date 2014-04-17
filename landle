@@ -58,13 +58,18 @@ $0: A Small but Useful(tm) utility to maintain clones of your github repos.
 
 Usage:
 
--d	Work on already-downloaded test data only.
+-d	Work on already-downloaded test data in the current working directory; see below.
 -v	Be verbose.
 -f [file] Specify path to config file; by default, looks in cwd first, then home directory.
 -n	Testing only: show, do not do.
 -h	This helpful message.
 
 See the README.md file for details on the config file format.
+
+To use the -d option, fetch your Github info with wget:
+
+    wget https://api.github.com/users/[username]/starred -O user.starred.json
+    wget https://api.github.com/users/[username]/repos -O user.repos.json
 
 Version: $version
 USAGE
