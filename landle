@@ -186,7 +186,11 @@ if ($offline == 1) {
 	debug("Fetching $url", $verbose);
 	my $reply = get($url);
 	# debug("\$reply = |$reply|", $verbose);
-	push(@$data, @{decode_json($reply)});
+	if (defined $reply) {
+		push(@$data, @{decode_json($reply)});
+	} else {
+		complain_and_die("Can't fetch $url -- maybe try the -d option?");
+	}
 }
 
 # users.repos will give us forks, private and public.
