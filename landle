@@ -116,7 +116,9 @@ sub clone_or_pull {
 		return if $testing_only;
 		# chdir($project->{"name"});
 		# system("git pull origin master");
-		$git->pull("origin");
+		eval {
+			$git->pull("origin");
+		} or carp("Problem cloning " . $project->{"name"} . ": $@");
 	} else {
 		debug("Can't see directory " . $project->{"name"}, $verbose);
 		debug("Assuming need to clone.", $verbose);
@@ -126,7 +128,13 @@ sub clone_or_pull {
 		# mode seems...inelegant.
 		if ($testing_only == 0) {
 			# system($clone);
-			$git->clone($project->{"clone_url"});
+			eval {
+				$git->clone($project->{"clone_url"});
+			};
+			if (defined $@) {
+				carp("Problem cloning " . $project->{"name"} . ": $@");
+				return ; # Skip the hook if there was a problem
+			}
 		}
 		if (defined ($cfg->{"landle.post-clone-hook"})) {
 			debug("cd $target_dir && " . $cfg->{"landle.post-clone-hook"} , $verbose);
