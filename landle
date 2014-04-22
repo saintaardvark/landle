@@ -76,12 +76,6 @@ USAGE
 	exit 1;
 }
 
-sub complain_and_die {
-	my $error = shift;
-	carp("$error");
-	&usage;
-}
-
 sub setup_root {
 	# FIXME: eval / check for errors
 	my $root = shift;
@@ -168,13 +162,13 @@ if ($option{f}) {
 		}
 	}
 }
-( -f $rc) or complain_and_die("Can't see config file $rc!");
+( -f $rc) or croak("Can't see config file $rc!");
 debug("Reading config file $rc...", $verbose);
 # FIXME: Another place to do try/except.
 
 eval {
 	%cfg = new Config::Simple($rc)->vars();
-} or complain_and_die("Bad config file $rc (bad syntax? empty?)");
+} or croak("Bad config file $rc (bad syntax? empty?)");
 
 debug("Username: " . $cfg{"landle.user"},    $verbose);
 debug("Repodir: "  . $cfg{"landle.repodir"}, $verbose);
@@ -185,7 +179,7 @@ setup_root($cfg{"landle.repodir"});
 # FIXME: This handling of the original directory is stupid.
 if ($offline == 1) {
 	local $/;
-	open(my $fh, '<', 'user.repos.json') or complain_and_die("Can't open user.repos.json: $!");
+	open(my $fh, '<', 'user.repos.json') or croak("Can't open user.repos.json: $!");
 	$orig = dirname(abs_path('user.repos.json'));
 	debug("Found user.repos.json in $orig, so will look there for user.starred.json as well.", $verbose);
 	my $json_text = <$fh>;
@@ -199,7 +193,7 @@ if ($offline == 1) {
 	if (defined $reply) {
 		push(@$data, @{decode_json($reply)});
 	} else {
-		complain_and_die("Can't fetch $url -- maybe try the -d option?");
+		croak("Can't fetch $url -- maybe try the -d option?");
 	}
 }
 
@@ -228,7 +222,7 @@ foreach $project (@$data) {
 if ($offline == 1) {
 	chdir($orig);
 	local $/;
-	open(my $fh, '<', 'user.starred.json') or complain_and_die("Can't open user.starred.json: $!");
+	open(my $fh, '<', 'user.starred.json') or croak("Can't open user.starred.json: $!");
 	my $json_text = <$fh>;
 	$data = decode_json($json_text);
 } else {
