@@ -168,10 +168,14 @@ if ($option{f}) {
 		}
 	}
 }
-
+( -f $rc) or complain_and_die("Can't see config file $rc!");
 debug("Reading config file $rc...", $verbose);
 # FIXME: Another place to do try/except.
-my %cfg = new Config::Simple($rc)->vars();
+
+eval {
+	%cfg = new Config::Simple($rc)->vars();
+} or complain_and_die("Bad config file $rc (bad syntax? empty?)");
+
 debug("Username: " . $cfg{"landle.user"},    $verbose);
 debug("Repodir: "  . $cfg{"landle.repodir"}, $verbose);
 
