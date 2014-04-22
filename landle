@@ -43,7 +43,7 @@ my $project;
 my $user;
 my $rcfile = ".landlerc";
 my $rc;
-my $cfg;
+my %cfg;
 my $orig;
 my @subdirs = qw(forks
 		 mirrors
