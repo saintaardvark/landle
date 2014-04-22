@@ -141,6 +141,7 @@ if ($option{h}) {
 
 if ($option{v}) {
 	$verbose = 1;
+	$Carp::Verbose = 1;
 }
 
 if ($option{n}) {
