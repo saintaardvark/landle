@@ -70,10 +70,11 @@ Perl, plus the following non-base modules:
 * Config::Simple
 * JSON::XS
 * File::Homedir
+* Git::Wrapper
 
 On Debian/Ubuntu, you can install them like so:
 
-     apt-get install libconfig-simple-perl libjson-xs-perl libfile-homedir-perl
+     apt-get install libconfig-simple-perl libjson-xs-perl libfile-homedir-perl libgit-wrapper-perl
 
 ## Shortcomings and TODO
 
