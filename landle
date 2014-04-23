@@ -22,7 +22,6 @@
 
 use strict;
 use Getopt::Std;
-# use Net::GitHub::V3;
 use Config::Simple;
 use LWP::Simple;
 use JSON::XS;
