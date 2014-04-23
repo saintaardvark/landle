@@ -82,7 +82,6 @@ Bad:
 
 * Direct fetch/parsing of Github v3 API URLs rather than using something like
   [Pithub][1]
-* Direct running of git commands rather than using Perl Git module
 * A little too verbose...
 
 TODO:
