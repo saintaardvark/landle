@@ -70,10 +70,11 @@ Perl, plus the following non-base modules:
 * Config::Simple
 * JSON::XS
 * File::Homedir
+* Git::Wrapper
 
 On Debian/Ubuntu, you can install them like so:
 
-     apt-get install libconfig-simple-perl libjson-xs-perl libfile-homedir-perl
+     apt-get install libconfig-simple-perl libjson-xs-perl libfile-homedir-perl libgit-wrapper-perl
 
 ## Shortcomings and TODO
 
@@ -81,7 +82,6 @@ Bad:
 
 * Direct fetch/parsing of Github v3 API URLs rather than using something like
   [Pithub][1]
-* Direct running of git commands rather than using Perl Git module
 * A little too verbose...
 
 TODO:
@@ -102,8 +102,7 @@ TODO:
 * That might imply overwriting config file options, which calls for
   better arg handling; there must be a Perl module which does this
   better.
-* Ctrl-c kills individual git processes, not landle itself.  This
-  might be fixed by using Perl Git module.
+* Use [this approach][5] for generating documentation.
 
 ## License
 
@@ -123,3 +122,4 @@ Either on [Github][2] or [my own repo][3].
 [2]: https://github.com/saintaardvark/landle
 [3]: http://git.saintaardvarkthecarpeted.com/?p=landle.git;a=summary
 [4]: http://mrsharpoblunto.github.io/foswig.js/
+[5]: https://stackoverflow.com/questions/13188404/how-to-make-my-perl-modules-readme-file-compatible-with-githubs-markdown-displ
