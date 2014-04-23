@@ -31,6 +31,7 @@ use File::Path qw(make_path);
 use Log::Message::Simple qw(msg error debug carp croak cluck confess);
 use Cwd qw(cwd abs_path);
 use Git::Wrapper;
+use Pod::Usage;
 
 my $version = "1.4";
 my %option;
@@ -62,9 +63,10 @@ Usage:
 -v	Be verbose.
 -f [file] Specify path to config file; by default, looks in cwd first, then home directory.
 -n	Testing only: show, do not do.
+-m	Show the man page.
 -h	This helpful message.
 
-See the README.md file for details on the config file format.
+See the man page for details on the config file format.
 
 To use the -d option, fetch your Github info with wget:
 
@@ -144,10 +146,14 @@ sub clone_or_pull {
 	}
 }
 
-getopts('dvf:nh', \%option);
+getopts('dvf:nhm', \%option);
 
 if ($option{h}) {
-	&usage;
+	pod2usage;
+}
+
+if ($option{m}) {
+	pod2usage(-verbose => 2);
 }
 
 if ($option{v}) {
@@ -249,3 +255,86 @@ foreach $project (@$data) {
 			  cfg	     => \%cfg,
 			  target_dir => "starred"});
 }
+
+__END__
+
+=head1 LANDLE
+
+B<landle> - A Small but Useful(tm) utility to maintain mirrors of Github repos you've created, starred, or watched.
+
+=head1 SYNOPSIS
+
+landle [options]
+
+    -d	Work on already-downloaded test data only (suitable for debugging).
+    -v	Be verbose.
+    -f  [file] Specify path to config file.
+    -n  Testing only: show what clone/pull/mkdir operations would happen.
+    -m  Print man page
+    -h	Brief help message
+
+=head1 DESCRIPTION
+
+Welcome to landle v1.4, a Small but Useful(tm) utility to clone your
+github repos: those you watch, own or star.  It's a straight-up ripoff
+of [ghsync][0]. ghsync is a great idea, but I couldn't get it to work
+for me...so here's landle.
+
+It'll organize your repos like so:
+
+    + repos
+      `-- forks    (public fork repos)
+      `--- mirrors  (public mirror repos)
+      `--- private  (private repos)
+      `--- public   (public repos)
+      `--- watching (public watched repos)
+
+(Again, straight from ghsync.  All hail the original author!)
+
+=head1 CONFIGURATION
+
+Landle will look for its config file in this order:
+
+=over
+
+=item C<.landlerc> in the directory it's run from (which allows for per-repo configs)
+
+=item C<~/.landlerc> (per-user config)
+
+=item or as specified with the "-f" option (global!)
+
+=back
+
+    [landle]
+    # Github username
+    user = saintaardvark
+    # Where landle should store its repos
+    repodir = /home/aardvark/landle
+    # Optional: post-clone hook
+    post-clone-hook = /home/aardvark/src/landle/post-clone-example.sh
+
+
+Then just run "landle".  It'll download the info it needs from Github,
+create the directories under `repodir`, and clone or pull as
+necessary.  If the optional `post-clone-hook` setting is present, it's
+assumed to be the path to a script or some such; landle will run it
+after cloning a new repo, and within that repo directory.
+
+(Note that landle is meant to maintain more-or-less read-only mirrors.
+It'd be interesting to think about a pre-update hook or some such
+that'd push any commits -- a sort of automated
+let's-push-all-the-commits-I-made-on-the-airplane mode -- but that
+gets more complicated than I want to think about.)
+
+Additional options:
+
+    -d	Work on already-downloaded test data only (see below)
+    -v	Be verbose.
+	-f [file] Specify path to config file.
+    -n	Testing only: show what clone/pull/mkdir operations would happen.
+    -m  This helpful man page.
+    -h	Help
+
+=head1 AUTHOR
+
+Hugh Brown (Saint Aardvark the Carpeted) <aardvark@saintaardvarkthecarpeted.com>
