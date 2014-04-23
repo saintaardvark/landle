@@ -102,6 +102,7 @@ TODO:
 * That might imply overwriting config file options, which calls for
   better arg handling; there must be a Perl module which does this
   better.
+* Use [this approach][5] for generating documentation.
 
 ## License
 
@@ -121,3 +122,4 @@ Either on [Github][2] or [my own repo][3].
 [2]: https://github.com/saintaardvark/landle
 [3]: http://git.saintaardvarkthecarpeted.com/?p=landle.git;a=summary
 [4]: http://mrsharpoblunto.github.io/foswig.js/
+[5]: https://stackoverflow.com/questions/13188404/how-to-make-my-perl-modules-readme-file-compatible-with-githubs-markdown-displ
