@@ -342,7 +342,7 @@ be to set C<user.name> and C<user.email> in each repo:
     git config user.name="Hugh Brown (Saint Aardvark the Carpeted)"
     git config user.email="spam@saintaardvarkthecarpeted.com"
 
-=head1 LICENSE
+=head1 LICENSE/COPYRIGHT/WARRANTY
 
 landle is copyright (C) 2014 by the author.  It is licensed under the
 GPL, version 3.  This program comes with ABSOLUTELY NO WARRANTY.  This
@@ -351,8 +351,10 @@ conditions; see the LICENSE file for details.
 
 =head1 THANKS
 
-* ghsync
-* The Javascript Random Project Name Generator for the name "landle"
+* ghsync (https://github.com/kennethreitz/ghsync)
+
+* The Random Javascript Project Name Generator for the name "landle"
+  (http://mrsharpoblunto.github.io/foswig.js/)
 
 =head1 AUTHOR
 
