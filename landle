@@ -344,7 +344,8 @@ get some debugging done.
 
 =head1 BUGS
 
-Oh, probably.  Report 'em to me via the Github project page.
+Oh, probably.  Report 'em to me via the L<Github project
+page|https://github.com/saintaardvark/landle>.
 
 See the C<README.md> file for a description of Landle's shortcomings
 and my TODO list.
