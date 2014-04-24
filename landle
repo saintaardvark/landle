@@ -275,8 +275,8 @@ see CONFIGURATION for details.
 
 landle is a Small but Useful(tm) utility to clone your github repos:
 those you watch, own or star.  It's a straight-up ripoff of
-[ghsync][0]. ghsync is a great idea, but I couldn't get it to work for
-me...so here's landle.
+L<ghsync|https://github.com/kennethreitz/ghsync>. ghsync is a great
+idea, but I couldn't get it to work for me...so here's landle.
 
 It'll organize your repos like so:
 
@@ -298,7 +298,7 @@ landle requires a configuration file before it will work.  It needs to look like
     [landle]
     # Github username -- required
     user = saintaardvark
-    # Where landle should store its repos -- required
+    # Full path where landle should store its repos -- required
     repodir = /home/aardvark/landle
     # Path to script to run after cloning a new repo -- OPTIONAL
     post-clone-hook = /home/aardvark/src/landle/post-clone-example.sh
@@ -342,6 +342,31 @@ be to set C<user.name> and C<user.email> in each repo:
     git config user.name="Hugh Brown (Saint Aardvark the Carpeted)"
     git config user.email="spam@saintaardvarkthecarpeted.com"
 
+=head1 BUGS
+
+Oh, probably.  Report 'em to me via the Github project page.
+
+See the C<README.md> file for a description of Landle's shortcomings
+and my TODO list.
+
+=head1 REQUIREMENTS
+
+Well, a Github account...
+
+landle is written in Perl, and uses the following non-base modules:
+
+=over
+
+=item Config::Simple
+
+=item JSON::XS
+
+=item File::Homedir
+
+=item Git::Wrapper
+
+=back
+
 =head1 LICENSE/COPYRIGHT/WARRANTY
 
 landle is copyright (C) 2014 by the author.  It is licensed under the
@@ -351,10 +376,13 @@ conditions; see the LICENSE file for details.
 
 =head1 THANKS
 
-* ghsync (https://github.com/kennethreitz/ghsync)
+=over
 
-* The Random Javascript Project Name Generator for the name "landle"
-  (http://mrsharpoblunto.github.io/foswig.js/)
+=item L<ghsync|https://github.com/kennethreitz/ghsync>
+
+=item The L<Random Javascript Project Name Generator|http://mrsharpoblunto.github.io/foswig.js/> for the name "landle"
+
+=back
 
 =head1 AUTHOR
 
