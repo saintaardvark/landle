@@ -119,7 +119,8 @@ sub clone_or_pull {
 getopts('dvf:nhm', \%option);
 
 if ($option{h}) {
-	pod2usage;
+	pod2usage(-verbose => 99,
+		  -sections => "NAME|SYNOPSIS|LICENSE" );
 }
 
 if ($option{m}) {
