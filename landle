@@ -1,5 +1,18 @@
 #!/usr/bin/perl -w
 
+use strict;
+use Getopt::Std;
+use Config::Simple;
+use LWP::Simple;
+use JSON::XS;
+use File::Basename qw(dirname);
+use File::HomeDir qw(home);
+use File::Path qw(make_path);
+use Log::Message::Simple qw(msg error debug carp croak cluck confess);
+use Cwd qw(cwd abs_path);
+use Git::Wrapper;
+use Pod::Usage;
+
 my $description = "A Small but Useful(tm) utility to maintain clones of Github repos you've created, starred or watched.";
 my $copyright = qq{{
 
@@ -20,19 +33,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place - Suite 330,
 Boston, MA 02111-1307, USA.
 }};
-
-use strict;
-use Getopt::Std;
-use Config::Simple;
-use LWP::Simple;
-use JSON::XS;
-use File::Basename qw(dirname);
-use File::HomeDir qw(home);
-use File::Path qw(make_path);
-use Log::Message::Simple qw(msg error debug carp croak cluck confess);
-use Cwd qw(cwd abs_path);
-use Git::Wrapper;
-use Pod::Usage;
 
 my $version = "1.4";
 my %option;
