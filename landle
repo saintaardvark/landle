@@ -195,12 +195,7 @@ if ($offline == 1) {
 	}
 }
 
-# users.repos will give us forks, private and public.
-
 foreach $project (@$data) {
-	# debug("Name: " . $project->{"name"}, $verbose);
-	# debug("\tFork?: " . $project->{"fork"}, $verbose);
-	# debug("\tClone URL: " . $project->{"clone_url"}, $verbose);
 	if ($project->{"fork"} == 1) {
 		clone_or_pull({ project	   => $project,
 				cfg	   => \%cfg,
