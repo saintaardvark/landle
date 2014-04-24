@@ -55,7 +55,6 @@ my @subdirs = qw(forks
 		 watching);
 
 sub setup_root {
-	# FIXME: eval / check for errors
 	my $root = shift;
 	(-d $root) or croak("Can't see repodir directory $root -- check config file.");
 	debug("Setting up directories...", $verbose);
@@ -72,13 +71,12 @@ sub setup_root {
 # target_dir: which of public, forks, etc the repo should be put.
 sub clone_or_pull {
 	my $args = shift;
-	my $project = $args->{"project"};
-	my $cfg = $args->{"cfg"};
+	my $project    = $args->{"project"};
+	my $cfg        = $args->{"cfg"};
 	my $target_dir = $args->{"target_dir"};
 	debug("Project name: " . $project->{"name"});
 	debug("Target dir: " . $cfg->{"landle.repodir"} . "/$target_dir", $verbose);
 	chdir($cfg->{"landle.repodir"} . "/${target_dir}");
-	# my $repo_dir = $project->{"name"};
 	my $git = Git::Wrapper->new($project->{"name"});
 	if (-d $project->{"name"}) {
 		debug("I can see directory " . $project->{"name"}, $verbose);
@@ -86,8 +84,6 @@ sub clone_or_pull {
 		# FIXME: Would git fetch be better?
 		debug("cd " . $project->{"name"} . " && git pull origin master", $verbose);
 		return if $testing_only;
-		# chdir($project->{"name"});
-		# system("git pull origin master");
 		eval {
 			$git->pull("origin");
 		} or carp("Problem cloning " . $project->{"name"} . ": $@");
@@ -99,7 +95,6 @@ sub clone_or_pull {
 		# FIXME: This double check to see if we're in testing
 		# mode seems...inelegant.
 		if ($testing_only == 0) {
-			# system($clone);
 			eval {
 				$git->clone($project->{"clone_url"});
 			};
@@ -148,7 +143,6 @@ if ($option{f}) {
 } else {
 	push my @possible, sprintf("%s/.landlerc", cwd());
 	push    @possible, sprintf("%s/.landlerc", home());
-	# FIXME: I'm not sure how best to do a "hey, none of that works" message.
 	SEARCH: foreach my $i (@possible) {
 		if (-f $i) {
 			debug("Found $i, so using that.", $verbose);
@@ -161,7 +155,6 @@ if ($option{f}) {
 ( -f $rc)     or croak("Can't see config file $rc! Read the manpage ('$0 -m').");
 
 debug("Reading config file $rc...", $verbose);
-# FIXME: Another place to do try/except.
 eval {
 	%cfg = new Config::Simple($rc)->vars();
 	defined ($cfg{"landle.user"}) && defined ($cfg{"landle.repodir"});
@@ -187,7 +180,6 @@ if ($offline == 1) {
 	my $url = sprintf("https://api.github.com/users/%s/repos", $cfg{"landle.user"});
 	debug("Fetching $url", $verbose);
 	my $reply = get($url);
-	# debug("\$reply = |$reply|", $verbose);
 	if (defined $reply) {
 		push(@$data, @{decode_json($reply)});
 	} else {
