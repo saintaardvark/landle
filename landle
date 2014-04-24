@@ -162,7 +162,6 @@ if ($option{f}) {
 
 debug("Reading config file $rc...", $verbose);
 # FIXME: Another place to do try/except.
-
 eval {
 	%cfg = new Config::Simple($rc)->vars();
 	defined ($cfg{"landle.user"}) && defined ($cfg{"landle.repodir"});
