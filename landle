@@ -235,7 +235,7 @@ foreach $project (@$data) {
 
 __END__
 
-=head1 LANDLE
+=head1 NAME
 
 B<landle> - A Small but Useful(tm) utility to maintain clones of Github repos you've created, starred or watched.
 
@@ -360,7 +360,7 @@ landle is written in Perl, and uses the following non-base modules:
 
 =back
 
-=head1 LICENSE/COPYRIGHT/WARRANTY
+=head1 LICENSE
 
 landle is copyright (C) 2014 by the author.  It is licensed under the
 GPL, version 3.  This program comes with ABSOLUTELY NO WARRANTY.  This
