@@ -1,6 +1,6 @@
 ## Change log
 
-* 1.5: Use Git::Wrapper instead of system("git").
+* 1.5: Use Git::Wrapper instead of system("git"); documentation improvements.
 * 1.4: Bugfix: don't put newly-cloned project in repodir.
 * 1.3: Bugfix: fix "Undefined subroutine &main::cwd".
 * 1.2: Add post-clone-repo hook
