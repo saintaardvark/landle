@@ -14,7 +14,7 @@ use Git::Wrapper;
 use Pod::Usage;
 
 my $description = "A Small but Useful(tm) utility to maintain clones of Github repos you've created, starred or watched.";
-my $copyright = qq{{
+my $license = qq{{
 
 Copyright (C) 2014 Hugh Brown
 
