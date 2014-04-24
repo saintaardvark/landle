@@ -278,17 +278,19 @@ It'll organize your repos like so:
 
 =head1 CONFIGURATION
 
-landle requires a configuration file before it will work.  It needs to look like this:
+landle requires a configuration file before it will work.  A minimal config
+looks like this:
 
-    # Comments begin with '#'.
-    # INI-style config; [landle] section is required.
     [landle]
-    # Github username -- required
     user = saintaardvark
-    # Full path where landle should store its repos -- required
     repodir = /home/aardvark/landle
     # Path to script to run after cloning a new repo -- OPTIONAL
     post-clone-hook = /home/aardvark/src/landle/post-clone-example.sh
+
+The config file is INI-style.  The C<[landle]> section is required, as
+is the C<user> and C<repodir> directive.  C<post-clone-hook> is
+optional; see the HOOKS section for details Comments are marked with
+C<#> and must be on their own line.  Unknown directives are ignored.
 
 landle will look for its config file in these places, in this order:
 
