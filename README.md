@@ -88,7 +88,7 @@ TODO:
 
 * Per-repo settings/hooks (would require rename of global landle section)
 * Better control over verbosity
-* Better error handling for missing config
+* Better error handling for missing config -- offer to create?
 * Make "repodir" optional (will assume cwd)
 * For forks, add "upstream" remote.  Not sure how to do that...
 * What to do if a repo goes away?  Add a "purge = true/false" option,
