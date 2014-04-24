@@ -87,10 +87,10 @@ Bad:
 
 TODO:
 
-* Per-repo settings/hooks (would require rename of global landle section)
+* Per-repo settings/hooks? (would require rename of global landle section)
 * Better control over verbosity
-* Better error handling for missing config -- offer to create?
-* Make "repodir" optional (will assume cwd)
+* Offer to create missing config
+* Make "repodir" optional, assume cwd?
 * For forks, add "upstream" remote.  Not sure how to do that...
 * What to do if a repo goes away?  Add a "purge = true/false" option,
   or even a "--purge" option for landle itself. Might also want to
