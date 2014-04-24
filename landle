@@ -268,27 +268,42 @@ landle [options]
     -m  Print man page
     -h	Brief help message
 
+landle requires a configuration file (C<.landlerc>) before it will work;
+see CONFIGURATION for details.
+
 =head1 DESCRIPTION
 
-Welcome to landle v1.4, a Small but Useful(tm) utility to clone your
-github repos: those you watch, own or star.  It's a straight-up ripoff
-of [ghsync][0]. ghsync is a great idea, but I couldn't get it to work
-for me...so here's landle.
+landle is a Small but Useful(tm) utility to clone your github repos:
+those you watch, own or star.  It's a straight-up ripoff of
+[ghsync][0]. ghsync is a great idea, but I couldn't get it to work for
+me...so here's landle.
 
 It'll organize your repos like so:
 
     + repos
-      `-- forks    (public fork repos)
-      `--- mirrors  (public mirror repos)
-      `--- private  (private repos)
-      `--- public   (public repos)
-      `--- watching (public watched repos)
+    `--- forks    (public fork repos)
+    `--- mirrors  (public mirror repos)
+    `--- private  (private repos)
+    `--- public   (public repos)
+    `--- watching (public watched repos)
 
 (Again, straight from ghsync.  All hail the original author!)
 
 =head1 CONFIGURATION
 
-Landle will look for its config file in this order:
+landle requires a configuration file before it will work.  It needs to look like this:
+
+    # Comments begin with '#'.
+    # INI-style config; [landle] section is required.
+    [landle]
+    # Github username -- required
+    user = saintaardvark
+    # Where landle should store its repos -- required
+    repodir = /home/aardvark/landle
+    # Path to script to run after cloning a new repo -- OPTIONAL
+    post-clone-hook = /home/aardvark/src/landle/post-clone-example.sh
+
+landle will look for its config file in these places, in this order:
 
 =over
 
@@ -300,20 +315,14 @@ Landle will look for its config file in this order:
 
 =back
 
-    [landle]
-    # Github username
-    user = saintaardvark
-    # Where landle should store its repos
-    repodir = /home/aardvark/landle
-    # Optional: post-clone hook
-    post-clone-hook = /home/aardvark/src/landle/post-clone-example.sh
+=head1 USE
 
-
-Then just run "landle".  It'll download the info it needs from Github,
-create the directories under `repodir`, and clone or pull as
-necessary.  If the optional `post-clone-hook` setting is present, it's
-assumed to be the path to a script or some such; landle will run it
-after cloning a new repo, and within that repo directory.
+Once you've created a config file, just run C<landle>.  It'll download
+the info it needs from Github, create the directories under C<repodir>,
+and clone or pull as necessary.  If the optional C<post-clone-hook>
+setting is present, it's assumed to be the path to a script or some
+such; landle will run it after cloning a new repo, and within that
+repo directory.
 
 (Note that landle is meant to maintain more-or-less read-only mirrors.
 It'd be interesting to think about a pre-update hook or some such
@@ -321,15 +330,30 @@ that'd push any commits -- a sort of automated
 let's-push-all-the-commits-I-made-on-the-airplane mode -- but that
 gets more complicated than I want to think about.)
 
-Additional options:
+=head1 HOOKS
 
-    -d	Work on already-downloaded test data only (see below)
-    -v	Be verbose.
-	-f [file] Specify path to config file.
-    -n	Testing only: show what clone/pull/mkdir operations would happen.
-    -m  This helpful man page.
-    -h	Help
+landle has an option to run a program after cloning a new repo; this
+is configured by the C<post-clone-hook> directive.  The program will
+be run within the newly-cloned repo directory.  An example use might
+be to set C<user.name> and C<user.email> in each repo:
+
+    #!/bin/sh
+
+    git config user.name="Hugh Brown (Saint Aardvark the Carpeted)"
+    git config user.email="spam@saintaardvarkthecarpeted.com"
+
+=head1 LICENSE
+
+landle is copyright (C) 2014 by the author.  It is licensed under the
+GPL, version 3.  This program comes with ABSOLUTELY NO WARRANTY.  This
+is free software, and you are welcome to redistribute it under certain
+conditions; see the LICENSE file for details.
+
+=head1 THANKS
+
+* ghsync
+* The Javascript Random Project Name Generator for the name "landle"
 
 =head1 AUTHOR
 
-Hugh Brown (Saint Aardvark the Carpeted) <aardvark@saintaardvarkthecarpeted.com>
+Hugh Brown (Saint Aardvark the Carpeted) <aardvark ta saintaardvarkthecarpeted.com>
