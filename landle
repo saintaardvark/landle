@@ -34,7 +34,7 @@ Foundation, Inc., 59 Temple Place - Suite 330,
 Boston, MA 02111-1307, USA.
 }};
 
-my $version = "1.4";
+my $version = "1.5";
 my %option;
 my $p_option;
 my $verbose = 0;
