@@ -54,25 +54,6 @@ my @subdirs = qw(forks
 		 starred
 		 watching);
 
-sub usage {
-	print <<USAGE;
-$0: $description
-
-Usage:
-
--d	Work on already-downloaded test data in the current working directory; see below.
--v	Be verbose.
--f [file] Specify path to config file; by default, looks in cwd first, then home directory.
--n	Testing only: show, do not do.
--m	Show the man page.
--h	This helpful message.
-
-Version: $version
-License/Warranty: $license
-USAGE
-	exit 1;
-}
-
 sub setup_root {
 	# FIXME: eval / check for errors
 	my $root = shift;
