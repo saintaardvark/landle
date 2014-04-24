@@ -52,6 +52,7 @@ Additional options:
     -v	Be verbose.
 	-f [file] Specify path to config file.
     -n	Testing only: show what clone/pull/mkdir operations would happen.
+    -m	Show the man page.
     -h	Help
 
 ## Test data

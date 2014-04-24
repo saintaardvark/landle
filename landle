@@ -342,6 +342,17 @@ be to set C<user.name> and C<user.email> in each repo:
     git config user.name="Hugh Brown (Saint Aardvark the Carpeted)"
     git config user.email="spam@saintaardvarkthecarpeted.com"
 
+=head1 TEST DATA
+
+If you want test data for the C<-d> option , fetch it like so:
+
+    wget https://api.github.com/users/[username]/starred -O user.starred.json
+    wget https://api.github.com/users/[username]/repos -O user.repos.json
+
+landle will look for these files in the directory it's invoked from.
+This will keep it from hitting Github every time you run, and you can
+get some debugging done.
+
 =head1 BUGS
 
 Oh, probably.  Report 'em to me via the Github project page.
@@ -381,6 +392,16 @@ conditions; see the LICENSE file for details.
 =item L<ghsync|https://github.com/kennethreitz/ghsync>
 
 =item The L<Random Javascript Project Name Generator|http://mrsharpoblunto.github.io/foswig.js/> for the name "landle"
+
+=back
+
+=head1 HOME PAGE
+
+=over
+
+=item L<Github page|https://github.com/saintaardvark/landle>
+
+=item L<Home|http://git.saintaardvarkthecarpeted.com/?p=landle.git;a=summary>
 
 =back
 
