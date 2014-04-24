@@ -57,6 +57,7 @@ my @subdirs = qw(forks
 sub setup_root {
 	# FIXME: eval / check for errors
 	my $root = shift;
+	(-d $root) or croak("Can't see repodir directory $root -- check config file.");
 	debug("Setting up directories...", $verbose);
 	foreach my $i (@subdirs) {
 		next if -d "${root}/$i";
@@ -156,13 +157,17 @@ if ($option{f}) {
 		}
 	}
 }
-( -f $rc) or croak("Can't see config file $rc!");
+(defined $rc) or croak("Couldn't find a config file!  Read the manpage ('$0 -m').");
+( -f $rc)     or croak("Can't see config file $rc! Read the manpage ('$0 -m').");
+
 debug("Reading config file $rc...", $verbose);
 # FIXME: Another place to do try/except.
 
 eval {
 	%cfg = new Config::Simple($rc)->vars();
-} or croak("Bad config file $rc (bad syntax? empty?)");
+	defined ($cfg{"landle.user"}) && defined ($cfg{"landle.repodir"});
+} or croak("Bad config file $rc (bad syntax? empty?). Read the manpage ('$0 -m').");
+
 
 debug("Username: " . $cfg{"landle.user"},    $verbose);
 debug("Repodir: "  . $cfg{"landle.repodir"}, $verbose);
