@@ -86,7 +86,6 @@ Bad:
 
 TODO:
 
-* Add help to landle itself for config file format (POD?)
 * Per-repo settings/hooks (would require rename of global landle section)
 * Better control over verbosity
 * Better error handling for missing config
