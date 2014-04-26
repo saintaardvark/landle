@@ -77,9 +77,16 @@ On Debian/Ubuntu, you can install them like so:
 
      apt-get install libconfig-simple-perl libjson-xs-perl libfile-homedir-perl libgit-wrapper-perl
 
-## Shortcomings and TODO
+## Bugs, shortcomings and TODO
 
-Bad:
+Bugs:
+
+* Some repos appear to get "stuck": landle reports unmerged files,
+  even though I haven't edited anything, changed the repo, etc.  I'm
+  not sure yet what's going on, but `git reset --hard HEAD; git pull`
+  seems to get around the problem.
+
+Shortcomings:
 
 * Direct fetch/parsing of Github v3 API URLs rather than using something like
   [Pithub][1]

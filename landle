@@ -330,7 +330,12 @@ get some debugging done.
 
 =head1 BUGS
 
-Oh, probably.  Report 'em to me via the L<Github project
+Some repos appear to get "stuck": landle reports unmerged files, even
+though I haven't edited anything, changed the repo, etc.  I'm not sure
+yet what's going on, but C<git reset --hard HEAD; git pull> seems to
+get around the problem.
+
+Report any others to me via the L<Github project
 page|https://github.com/saintaardvark/landle>.
 
 See the C<README.md> file for a description of Landle's shortcomings
