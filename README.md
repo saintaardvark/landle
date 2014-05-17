@@ -86,6 +86,9 @@ Bugs:
   not sure yet what's going on, but `git reset --hard HEAD; git pull`
   seems to get around the problem.
 
+* When cloning a new repo, landle reports an error though everything's
+  actually fine.  I need to figure out what's going on there...
+
 Shortcomings:
 
 * Direct fetch/parsing of Github v3 API URLs rather than using something like

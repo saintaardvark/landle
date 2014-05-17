@@ -335,6 +335,9 @@ though I haven't edited anything, changed the repo, etc.  I'm not sure
 yet what's going on, but C<git reset --hard HEAD; git pull> seems to
 get around the problem.
 
+When cloning a new repo, landle reports an error though everything's
+actually fine.  I need to figure out what's going on there...
+
 Report any others to me via the L<Github project
 page|https://github.com/saintaardvark/landle>.
 
