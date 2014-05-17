@@ -87,7 +87,9 @@ Bugs:
   seems to get around the problem.
 
 * When cloning a new repo, landle reports an error though everything's
-  actually fine.  I need to figure out what's going on there...
+  actually fine.  This may be because I'm checking it's success the
+  wrong way -- there's output going to STDERR.  See Git::Wrapper's doc
+  for details.
 
 Shortcomings:
 
