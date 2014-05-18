@@ -1,5 +1,6 @@
 ## Change log
 
+* 1.6: Bugfix: better error checking, no more bogus complaint about successful clone.
 * 1.5: Use Git::Wrapper instead of system("git"); documentation improvements.
 * 1.4: Bugfix: don't put newly-cloned project in repodir.
 * 1.3: Bugfix: fix "Undefined subroutine &main::cwd".
