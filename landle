@@ -12,6 +12,7 @@ use Log::Message::Simple qw(msg error debug carp croak cluck confess);
 use Cwd qw(cwd abs_path);
 use Git::Wrapper;
 use Pod::Usage;
+use Scalar::Util qw(blessed);
 
 my $description = "A Small but Useful(tm) utility to maintain clones of Github repos you've created, starred or watched.";
 my $license = qq{{
@@ -86,7 +87,10 @@ sub clone_or_pull {
 		return if $testing_only;
 		eval {
 			$git->pull("origin");
-		} or carp("Problem cloning " . $project->{"name"} . ": $@");
+		};
+		if (blessed($@) and $@->isa("Git::Wrapper::Exception")) {
+			carp("Problem pulling updates from " . $project->{"name"} . ": $@");
+		}
 	} else {
 		debug("Can't see directory " . $project->{"name"}, $verbose);
 		debug("Assuming need to clone.", $verbose);
@@ -98,7 +102,7 @@ sub clone_or_pull {
 			eval {
 				$git->clone($project->{"clone_url"});
 			};
-			if (defined $@) {
+			if (blessed($@) and $@->isa("Git::Wrapper::Exception")) {
 				carp("Problem cloning " . $project->{"name"} . ": $@");
 				return ; # Skip the hook if there was a problem
 			}
@@ -334,9 +338,6 @@ Some repos appear to get "stuck": landle reports unmerged files, even
 though I haven't edited anything, changed the repo, etc.  I'm not sure
 yet what's going on, but C<git reset --hard HEAD; git pull> seems to
 get around the problem.
-
-When cloning a new repo, landle reports an error though everything's
-actually fine.  I need to figure out what's going on there...
 
 Report any others to me via the L<Github project
 page|https://github.com/saintaardvark/landle>.

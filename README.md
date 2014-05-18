@@ -86,11 +86,6 @@ Bugs:
   not sure yet what's going on, but `git reset --hard HEAD; git pull`
   seems to get around the problem.
 
-* When cloning a new repo, landle reports an error though everything's
-  actually fine.  This may be because I'm checking it's success the
-  wrong way -- there's output going to STDERR.  See Git::Wrapper's doc
-  for details.
-
 Shortcomings:
 
 * Direct fetch/parsing of Github v3 API URLs rather than using something like
