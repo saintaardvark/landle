@@ -95,7 +95,8 @@ Shortcomings:
 TODO:
 
 * Per-repo settings/hooks? (would require rename of global landle section)
-* Better control over verbosity
+* Better control over verbosity. In particular, an option for a short
+  summary would be nice.
 * Offer to create missing config
 * Make "repodir" optional, assume cwd?
 * For forks, add "upstream" remote.  Not sure how to do that...
