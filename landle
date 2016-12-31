@@ -89,7 +89,7 @@ sub clone_or_pull {
 			$git->pull("origin");
 		};
 		if (blessed($@) and $@->isa("Git::Wrapper::Exception")) {
-			carp("Problem pulling updates from " . $project->{"name"} . ": $@");
+			carp("[" . $project->{"name"} . "]: \nProblem pulling updates from " . $project->{"name"} . ": $@");
 		}
 	} else {
 		debug("Can't see directory " . $project->{"name"}, $verbose);
@@ -103,7 +103,7 @@ sub clone_or_pull {
 				$git->clone($project->{"clone_url"});
 			};
 			if (blessed($@) and $@->isa("Git::Wrapper::Exception")) {
-				carp("Problem cloning " . $project->{"name"} . ": $@");
+				carp("[" . $project->{"name"} . "]: \nProblem cloning " . $project->{"name"} . ": $@");
 				return ; # Skip the hook if there was a problem
 			}
 		}
